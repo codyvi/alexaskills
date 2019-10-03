@@ -45,7 +45,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello World!"
+        speak_output = "Hola Mundo!"
 
         return (
             handler_input.response_builder
@@ -63,7 +63,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Puedes decirme hola. En que manera te puedo ayudar?"
+        speak_output = "En que manera te puedo ayudar?"
 
         return (
             handler_input.response_builder
