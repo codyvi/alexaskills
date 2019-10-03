@@ -27,7 +27,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Que onda Green Devs ya hicieron lo suyo del srs y sds btw mañana hay que ver que onda con el plan con mejorado"
+        speak_output = "Hola! Bienvenido a esta skill de prueba!"
 
         return (
             handler_input.response_builder
@@ -63,7 +63,7 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "You can say hello to me! How can I help?"
+        speak_output = "Puedes decirme hola. En que manera te puedo ayudar?"
 
         return (
             handler_input.response_builder
@@ -82,7 +82,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Goodbye!"
+        speak_output = "Nos vemos!"
 
         return (
             handler_input.response_builder
@@ -141,7 +141,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         # type: (HandlerInput, Exception) -> Response
         logger.error(exception, exc_info=True)
 
-        speak_output = "Sorry, I had trouble doing what you asked. Please try again."
+        speak_output = "Perdón, he tenido un problema. Prueba de nuevo"
 
         return (
             handler_input.response_builder
