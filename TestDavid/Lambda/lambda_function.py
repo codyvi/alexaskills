@@ -67,11 +67,11 @@ class RandomIntentHandler(AbstractRequestHandler):
         datos = ["Turriza es chaparro", "Nissim se enoja", "Alberto es crack"]
         speak_output = datos[random.randint(0, len(datos)-1)]
 
-        #test  = "Recuerda que me puedes decir cualquier cosa"
+        test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask(test)
+                .ask(test)
                 .response
         )
 
