@@ -65,7 +65,7 @@ class RandomIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
 
         datos = ["Turriza es chaparro", "Nissim se enoja", "Alberto es crack"]
-        speak_output = datos[random.randint(0,len(datos)-1)]
+        speak_output = datos[random.randint(0, len(datos)-1)]
 
         #test  = "Recuerda que me puedes decir cualquier cosa"
         return (
@@ -180,6 +180,7 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
+sb.add_request_handler(RandomIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
