@@ -5,6 +5,7 @@
 # session persistence, api calls, and more.
 # This sample is built using the handler classes approach in skill builder.
 import logging
+import random
 import ask_sdk_core.utils as ask_utils
 
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -45,12 +46,32 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola Mundo!"
-        test  = "Recuerda que me puedes decir cualquier cosa"
+        speak_output = "Hola! Prueba decir random para un dato random"
+        #test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(test)
+                #.ask(test)
+                .response
+        )
+
+class RandomIntentHandler(AbstractRequestHandler):
+    """Handler for Hello World Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("RandomIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+
+        datos = ["Turriza es chaparro", "Nissim se enoja", "Alberto es crack"]
+        speak_output = datos[random.randint(0,len(datos)-1)]
+
+        #test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask(test)
                 .response
         )
 
