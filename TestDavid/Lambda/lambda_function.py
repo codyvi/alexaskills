@@ -46,7 +46,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola! Prueba decir random para un dato random"
+        speak_output = "Hola! Prueba decir random para un elogio random"
         #test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -64,8 +64,8 @@ class RandomIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
 
-        datos = ["Turriza es chaparro", "Nissim se enoja", "Alberto es crack"]
-        speak_output = datos[random.randint(0, len(datos)-1)]
+        compliments = [line for line in open('compliments.txt')]
+        speak_output = compliments[random.randint(0, len(datos)-1)]
 
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
