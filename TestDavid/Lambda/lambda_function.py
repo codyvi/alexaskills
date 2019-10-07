@@ -47,11 +47,11 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = "Hola! Prueba decir random para un elogio random"
-        #test  = "Recuerda que me puedes decir cualquier cosa"
+        test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask(test)
+                .ask(test)
                 .response
         )
 
