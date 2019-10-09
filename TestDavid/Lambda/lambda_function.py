@@ -63,9 +63,8 @@ class RandomIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-
-        speak_output = "Prueba123"
-
+        datos = ["test1", "test2", "test3"]
+        speak_output = datos[random.randint(0, len(datos)-1)]
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
