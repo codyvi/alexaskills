@@ -46,7 +46,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola! Prueba decir random para un elogio random"
+        speak_output = "Hola! Prueba decir random para poder acceder a los datos"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -56,7 +56,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         )
 
 class RandomIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
+    """Handler for Random Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("RandomIntent")(handler_input)
@@ -64,7 +64,7 @@ class RandomIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         datos = ["test1", "test2", "test3"]
-        speak_output = datos[random.randint(0, len(datos)-1)]
+        speak_output = "Hola David, quieres acceder a cuanto dinero tienes en total? Di Dinero para acceder!"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
