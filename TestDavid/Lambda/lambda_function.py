@@ -63,6 +63,9 @@ class RandomIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        datos = ["test1", "test2", "test3"]
+        compliment = compliments[random.randint(0, len(datos)-1)]
+        compliment = compliments[random.randint(0, len(compliments)-1)]
 
         speak_output = "Prueba123"
 
