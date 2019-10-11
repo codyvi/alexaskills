@@ -14,6 +14,9 @@ from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
+from tinydb import tinydb
+db = TinyDB('test.json')
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
