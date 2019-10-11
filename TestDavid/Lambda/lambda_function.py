@@ -107,7 +107,7 @@ class DineroIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = ()"David, tu dinero disponible es: " +s)
+        speak_output = ("David, tu dinero disponible es: " +s)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
