@@ -7,7 +7,7 @@
 import logging
 import random
 import ask_sdk_core.utils as ask_utils
-
+#check dynamoDB doc
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
