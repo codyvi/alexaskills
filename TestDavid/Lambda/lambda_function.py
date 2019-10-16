@@ -30,7 +30,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola! Bienvenido a esta skill de prueba!"
+        speak_output = "Hola! David, utiliza opciones para ver que podemos hacer con tus datos"
 
         return (
             handler_input.response_builder
@@ -48,7 +48,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola! Prueba decir random para poder acceder a los datos"
+        speak_output = "Bip Bop Bip"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -57,15 +57,15 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
                 .response
         )
 
-class RandomIntentHandler(AbstractRequestHandler):
-    """Handler for Random Intent."""
+class OpcionesIntentHandler(AbstractRequestHandler):
+    """Handler for Opciones Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("RandomIntent")(handler_input)
+        return ask_utils.is_intent_name("OpcionesIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola David, quieres acceder a cuanto dinero tienes en total? Di Dinero para acceder!"
+        speak_output = "Hola David, si quieres acceder a tu dinero disponible, di Dinero, más opciones vienen en el camino"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -95,7 +95,7 @@ class DineroIntentHandler(AbstractRequestHandler):
         #                 aws_session_token=credentials['SessionToken'],
         #                 region_name='us-east-1')
 
-        s = 80000
+        s = '80000'
         speak_output = ("David, tu dinero disponible es: " +s)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
@@ -212,7 +212,7 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(HelloWorldIntentHandler())
-sb.add_request_handler(RandomIntentHandler())
+sb.add_request_handler(OpcionesIntentHandler())
 sb.add_request_handler(DineroIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
