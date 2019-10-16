@@ -6,6 +6,7 @@
 # This sample is built using the handler classes approach in skill builder.
 import logging
 import random
+import boto3
 import ask_sdk_core.utils as ask_utils
 #check dynamoDB doc
 from ask_sdk_core.skill_builder import SkillBuilder
