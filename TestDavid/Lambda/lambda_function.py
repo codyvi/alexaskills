@@ -6,6 +6,7 @@
 # This sample is built using the handler classes approach in skill builder.
 import logging
 import random
+import boto3
 import ask_sdk_core.utils as ask_utils
 #check dynamoDB doc
 from ask_sdk_core.skill_builder import SkillBuilder
@@ -84,6 +85,15 @@ class DineroIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        # sts_client = boto3.client('sts')
+        # assumed_role_object=sts_client.assume_role(RoleArn="<arn:aws:iam::989703106764:role/AlexaHostedSkillLambdaRole>", RoleSessionName="AssumeRoleSession1")
+        # credentials=assumed_role_object['Credentials']
+
+        # dynamodb = boto3.resource('dynamodb',
+        #                 aws_access_key_id=credentials['AccessKeyId'],
+        #                 aws_secret_access_key=credentials['SecretAccessKey'],
+        #                 aws_session_token=credentials['SessionToken'],
+        #                 region_name='us-east-1')
 
         s = 80000
         speak_output = ("David, tu dinero disponible es: " +s)
