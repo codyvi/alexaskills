@@ -84,7 +84,7 @@ class DineroIntentHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("DineroIntent")(handler_input)
 
     def handle(self, handler_input):
-        type: (HandlerInput) -> Response
+        #type: (HandlerInput) -> Response
         sts_client = boto3.client('sts')
         assumed_role_object=sts_client.assume_role(RoleArn="<arn:aws:dynamodb:us-east-1:488583229306:table/Personal>", RoleSessionName="AssumeRoleSession1")
         credentials=assumed_role_object['Credentials']
