@@ -30,7 +30,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola! David, utiliza opciones para ver que podemos hacer con tus datos"
+        speak_output = "Hola! Di tu nombre para acceder a tus datos"
 
         return (
             handler_input.response_builder
@@ -40,15 +40,15 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 
-class HelloWorldIntentHandler(AbstractRequestHandler):
+class DanielIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("HelloWorldIntent")(handler_input)
+        return ask_utils.is_intent_name("DanielIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Bip Bop Bip"
+        speak_output = "Hola Daniel! Di opciones para ver que podemos hacer!"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -65,7 +65,7 @@ class OpcionesIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola David, si quieres acceder a tu dinero disponible, di Dinero, más opciones vienen en el camino"
+        speak_output = "Hola Daniel, si quieres acceder a tu dinero disponible, di Dinero, más opciones vienen en el camino"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -226,7 +226,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(HelloWorldIntentHandler())
+sb.add_request_handler(DanielIntentHandler())
 sb.add_request_handler(OpcionesIntentHandler())
 sb.add_request_handler(DineroIntentHandler())
 sb.add_request_handler(CostosIntentHandler())
