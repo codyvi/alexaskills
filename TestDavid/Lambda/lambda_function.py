@@ -20,6 +20,7 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+flag = False 
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -226,11 +227,15 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(DanielIntentHandler())
-sb.add_request_handler(OpcionesIntentHandler())
-sb.add_request_handler(DineroIntentHandler())
-sb.add_request_handler(CostosIntentHandler())
-sb.add_request_handler(HelpIntentHandler())
+if flag == False:
+    sb.add_request_handler(DanielIntentHandler())
+    flag = True
+if flag == True:
+    sb.add_request_handler(OpcionesIntentHandler())
+    sb.add_request_handler(DineroIntentHandler())
+    sb.add_request_handler(CostosIntentHandler())
+    sb.add_request_handler(HelpIntentHandler())
+    flag = False
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(IntentReflectorHandler()) # make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
