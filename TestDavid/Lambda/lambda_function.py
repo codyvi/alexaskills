@@ -66,7 +66,7 @@ class DineroDestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = "¿Quieres saber tu dinero de costos o de gasto de Destiny? Di costos Destiny o gastos destiny para acceder"
+        speak_output = "¿Quieres saber tu presupuest o  dinero de gasto de Destiny? Di costos Destiny o gastos destiny para acceder"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
