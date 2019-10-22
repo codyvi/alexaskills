@@ -88,10 +88,10 @@ class CostosIntentHandler(AbstractRequestHandler):
         # credentials=assumed_role_object['Credentials']
 
         # dynamodb = boto3.resource('dynamodb',
-        #                  aws_access_key_id=credentials['AccessKeyId'],
-        #                  aws_secret_access_key=credentials['SecretAccessKey'],
-        #                  aws_session_token=credentials['SessionToken'],
-        #                  region_name='us-east-1')
+        #                   aws_access_key_id=credentials['AccessKeyId'],
+        #                   aws_secret_access_key=credentials['SecretAccessKey'],
+        #                   aws_session_token=credentials['SessionToken'],
+        #                   region_name='us-east-1')
         DineroCostos = '80000'
         speak_output = ("Tu dinero de costos es "+DineroCostos)
         test  = "Recuerda que me puedes decir cualquier cosa"
