@@ -66,7 +66,7 @@ class DineroDestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = "¿Quieres saber tu presupuest o  dinero de gasto de Destiny? Di costos Destiny o gastos destiny para acceder"
+        speak_output = "¿Quieres saber tu presupuesto o  dinero de gasto de Destiny? Di costos Destiny o gastos destiny para acceder"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -93,16 +93,17 @@ class PresupuestoDestinyIntentHandler(AbstractRequestHandler):
                 .response
         )
 
-class GastosDestinyIntentHandler(AbstractRequestHandler):
+class ComprometidoDestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("GastosDestinyIntent")(handler_input)
+        return ask_utils.is_intent_name("ComprometidoDestinyIntent")(handler_input)
 
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
-        DineroCostos = '80000'
-        speak_output = ("Tu dinero de gastos es "+DineroCostos)
+        comprometido = 80000 -25000
+        newComp = str(comprometido)
+        speak_output = ("Tu dinero comprometido es " +newComp)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -221,7 +222,7 @@ sb.add_request_handler(OpcionesIntentHandler())
 sb.add_request_handler(DineroDestinyIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(PresupuestoDestinyIntentHandler())
-sb.add_request_handler(GastosDestinyIntentHandler())
+sb.add_request_handler(ComprometidoDestinyIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(IntentReflectorHandler()) # make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
