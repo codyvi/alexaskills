@@ -57,16 +57,16 @@ class OpcionesIntentHandler(AbstractRequestHandler):
         )
 
 
-class DineroIntentHandler(AbstractRequestHandler):
+class DestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("DineroIntent")(handler_input)
+        return ask_utils.is_intent_name("DestinyIntent")(handler_input)
 
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = ("¿Quieres saber tu dinero de costos o de gastos?")
+        speak_output = "¿Quieres saber tu dinero de costos o de gasto de Destiny?"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -83,15 +83,6 @@ class CostosIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
-        # sts_client = boto3.client('sts')
-        # assumed_role_object=sts_client.assume_role(RoleArn="<arn:aws:dynamodb:us-east-1:488583229306:table/Personal>", RoleSessionName="AssumeRoleSession1")
-        # credentials=assumed_role_object['Credentials']
-
-        # dynamodb = boto3.resource('dynamodb',
-        #                   aws_access_key_id=credentials['AccessKeyId'],
-        #                   aws_secret_access_key=credentials['SecretAccessKey'],
-        #                   aws_session_token=credentials['SessionToken'],
-        #                   region_name='us-east-1')
         DineroCostos = '80000'
         speak_output = ("Tu dinero de costos es "+DineroCostos)
         test  = "Recuerda que me puedes decir cualquier cosa"
@@ -209,7 +200,7 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(OpcionesIntentHandler())
-sb.add_request_handler(DineroIntentHandler())
+sb.add_request_handler(DestinyIntentHandler())
 sb.add_request_handler(CostosIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
