@@ -61,7 +61,7 @@ class DineroDestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("DestinyIntent")(handler_input)
+        return ask_utils.is_intent_name("DineroDestinyIntent")(handler_input)
 
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
