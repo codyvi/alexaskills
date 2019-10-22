@@ -20,8 +20,6 @@ from ask_sdk_model import Response
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-flag = False 
-
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
     def can_handle(self, handler_input):
@@ -49,7 +47,7 @@ class OpcionesIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola Daniel, si quieres acceder a tu dinero disponible, di Dinero, más opciones vienen en el camino"
+        speak_output = "Hola Daniel, para ver cuanto dinero hay en algún proyecto di el nombre de este y podras acceder a el."
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -68,7 +66,7 @@ class DineroIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = ("¿Quieres saber tu dinero de costos o de gastot?")
+        speak_output = ("¿Quieres saber tu dinero de costos o de gastos?")
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
