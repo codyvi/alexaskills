@@ -47,7 +47,7 @@ class OpcionesIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola Daniel, para ver cuanto dinero hay en algún proyecto di el nombre de este y podras acceder a el."
+        speak_output = "Para ver cuanto dinero hay en algún proyecto di el nombre de este y podras acceder a el."
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -57,7 +57,7 @@ class OpcionesIntentHandler(AbstractRequestHandler):
         )
 
 
-class DestinyIntentHandler(AbstractRequestHandler):
+class DineroDestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
@@ -66,7 +66,7 @@ class DestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = "¿Quieres saber tu dinero de costos o de gasto de Destiny?"
+        speak_output = "¿Quieres saber tu dinero de costos o de gasto de Destiny? Di costos Destiny o gastos destiny para acceder"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -75,16 +75,34 @@ class DestinyIntentHandler(AbstractRequestHandler):
                 .response
         )
 
-class CostosIntentHandler(AbstractRequestHandler):
+class PresupuestoDestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("CostosIntent")(handler_input)
+        return ask_utils.is_intent_name("PresupuestoDestinyIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+        Presupuesto = '80000'
+        speak_output = ("Tu presupuesto en Destiny es "+Presupuesto)
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
+class GastosDestinyIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("GastosDestinyIntent")(handler_input)
 
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
         DineroCostos = '80000'
-        speak_output = ("Tu dinero de costos es "+DineroCostos)
+        speak_output = ("Tu dinero de gastos es "+DineroCostos)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -203,6 +221,8 @@ sb.add_request_handler(OpcionesIntentHandler())
 sb.add_request_handler(DestinyIntentHandler())
 sb.add_request_handler(CostosIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
+sb.add_request_handler(PresupuestoDestinyIntent())
+sb.add_request_handler(GastosDestinyIntent())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
 sb.add_request_handler(IntentReflectorHandler()) # make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
