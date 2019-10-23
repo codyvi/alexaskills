@@ -139,7 +139,7 @@ class DiponibleDestinyIntentHandler(AbstractRequestHandler):
         #type: (HandlerInput) -> Response
         disponible = 80000 -25000
         newDisp = str(disponible)
-        speak_output = ("Tu dinero comprometido es " +newDisp)
+        speak_output = ("Tu dinero disponible es " +newDisp)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
