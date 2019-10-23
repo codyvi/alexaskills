@@ -56,6 +56,97 @@ class OpcionesIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+class DineroGravityIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Gravity Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("DineroGravityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+
+        speak_output = "Para saber tu presupuesto, dinero comprometido, dinero erogado o dinero disponible, solo di Gravity y alguna de estas 4 opciones"
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
+class PresupuestoGravityIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("PresupuestoGravityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+        Presupuesto = '80000'
+        speak_output = ("Tu presupuesto en Gravity es "+Presupuesto)
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
+class ComprometidoGravityIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("ComprometidoGravityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+        comprometido = '5000'
+        speak_output = ("Tu dinero comprometido en Gravity es " +comprometido)
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
+class ErogadoGravityIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("ErogadoGravityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+        erogado = '20000'
+        speak_output = ("Tu dinero erogado en Gravity es " +erogado)
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
+class DiponibleGravityIntentHandler(AbstractRequestHandler):
+    """Handler for Dinero Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("DiponibleGravityIntent")(handler_input)
+
+    def handle(self, handler_input):
+        #type: (HandlerInput) -> Response
+        disponible = 80000 -25000
+        newDisp = str(disponible)
+        speak_output = ("Tu dinero disponible en Gravity es " +newDisp)
+        test  = "Recuerda que me puedes decir cualquier cosa"
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(test)
+                .response
+        )
+
 
 class DineroDestinyIntentHandler(AbstractRequestHandler):
     """Handler for Dinero Intent."""
@@ -66,7 +157,7 @@ class DineroDestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
 
-        speak_output = "¿Quieres saber tu presupuesto o  dinero comprometido de Destiny? Di costos Destiny o comprometido destiny para acceder"
+        speak_output = "Para saber tu presupuesto, dinero comprometido, dinero erogado o dinero disponible, solo di destiny y alguna de estas 4 opciones"
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -102,7 +193,7 @@ class ComprometidoDestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
         comprometido = '5000'
-        speak_output = ("Tu dinero comprometido es " +comprometido)
+        speak_output = ("Tu dinero comprometido en Destiny es " +comprometido)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -120,7 +211,7 @@ class ErogadoDestinyIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         #type: (HandlerInput) -> Response
         erogado = '20000'
-        speak_output = ("Tu dinero erogado es " +erogado)
+        speak_output = ("Tu dinero erogado en Destiny es " +erogado)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -139,7 +230,7 @@ class DiponibleDestinyIntentHandler(AbstractRequestHandler):
         #type: (HandlerInput) -> Response
         disponible = 80000 -25000
         newDisp = str(disponible)
-        speak_output = ("Tu dinero disponible es " +newDisp)
+        speak_output = ("Tu dinero disponible en Destiny es " +newDisp)
         test  = "Recuerda que me puedes decir cualquier cosa"
         return (
             handler_input.response_builder
@@ -148,6 +239,8 @@ class DiponibleDestinyIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+
+#Repetir los 4 Intents de arriba para los demás proyectos, también agregarlos en el Build.
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
@@ -183,8 +276,6 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
                 .speak(speak_output)
                 .response
         )
-
-#Hola
 
 
 class SessionEndedRequestHandler(AbstractRequestHandler):
@@ -255,11 +346,16 @@ sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(OpcionesIntentHandler())
+sb.add_request_handler(DineroGravityIntentHandler())
 sb.add_request_handler(DineroDestinyIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
+sb.add_request_handler(PresupuestoGravityIntentHandler())
 sb.add_request_handler(PresupuestoDestinyIntentHandler())
+sb.add_request_handler(ComprometidoGravityIntentHandler())
 sb.add_request_handler(ComprometidoDestinyIntentHandler())
+sb.add_request_handler(ErogadoGravityIntentHandler())
 sb.add_request_handler(ErogadoDestinyIntentHandler())
+sb.add_request_handler(DiponibleGravityIntentHandler())
 sb.add_request_handler(DiponibleDestinyIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(SessionEndedRequestHandler())
