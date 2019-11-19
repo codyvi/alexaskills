@@ -1,0 +1,43 @@
+{
+    "type": "APL",
+    "version": "1.1",
+    "settings": {},
+    "theme": "dark",
+    "import": [],
+    "resources": [],
+    "styles": {},
+    "onMount": [],
+    "graphics": {},
+    "commands": {},
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "type": "Container",
+                "height": "100%",
+                "width": "100%",
+                "paddingTop": "0dp",
+                "paddingLeft": "0dp",
+                "paddingRight": "0dp",
+                "paddingBottom": "0dp",
+                "items": [
+                    {
+                    "type": "Video",
+                    "id": "myVideoPlayer",
+                    "height": "100vh",
+                    "width": "100vw",
+                    "scale": "best-fit",
+                    "offset": 10000,
+                    "autoplay": true,
+                    "source": "${payload.senias.properties.Video}",
+                    "repeatCount": 0
+                    
+                    }
+                ]
+            }
+        ]
+    }
+}
