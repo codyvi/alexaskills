@@ -1,2 +1,10 @@
-# alexaskills
-My code for the alexa skills I'm working on
+# Alexa Skills
+
+Repositorio para poner mis SKills de Alexa
+
+## Uso
+
+Por ahora solo yo las puedo usar, una vez esten en deploy solo sera de decir 'Alexa abre ' y el nombre de la Skill
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
