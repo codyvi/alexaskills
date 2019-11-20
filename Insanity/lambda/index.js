@@ -3,12 +3,42 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 
+const Util = require('util.js');
+
+const Escape = require('lodash/escape');
+
+const PIC_URLS = {
+    "Presentacion":"https://s3.amazonaws.com/o.l.p.estebanbucket/tercera+ronda+de+tendencias/WhatsApp+Image+2019-09-26+at+5.00.53+PM.jpeg",
+    "abecedario":"https://amzn1-ask-skill-99ca56a8-5626-buildsnapshotbucket-1dwe8sjjeft1t.s3.amazonaws.com/Media/lengua-senas-mexico.jpg"
+};
+
+function supportsAPL(handlerInput) {
+    const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
+    const aplInterface = supportedInterfaces['Alexa.Presentation.APL'];
+    return aplInterface !== null && aplInterface !== undefined;
+}
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola, di quiero aprender el curso Insanity para entrar en la clase.';
+        const speakOutput = 'Que quieres aprender hoy? Di quiero aprender el curso';
+         if (supportsAPL(handlerInput)) {
+              let direccion = Util.getS3PreSignedUrl("Media/Cursos.PNG");
+             handlerInput.responseBuilder
+            .addDirective({
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            document: require('./visual.json'),
+            datasources: {
+              "senias": {
+                "properties": {
+                  "image": direccion
+                  
+                }
+              }
+            }
+            });
+        }
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -21,13 +51,113 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hello World!';
+        const speakOutput = 'Hello';
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
+
+const cursos = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'cursos';
+    },
+    handle(handlerInput) {
+        const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+        let elcurso;
+        let good;
+            if (cursoQueRecibo === 'familia') {
+            elcurso = `Abriendo`;
+           if (supportsAPL(handlerInput)) {
+            let direccion = Util.getS3PreSignedUrl("Media/VideoFam1.mp4");
+            console.log(`${direccion}`);
+            handlerInput.responseBuilder
+            .addDirective({
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            document: require('./video.json'),
+            datasources: {
+              "senias": {
+                "properties": {
+                  "Video": `${direccion}`
+                }
+              }
+            }
+            });
+            
+         }
+         
+        }       
+        
+        else if(cursoQueRecibo === 'numeros'){
+            elcurso = `Abriendo`;
+            if (supportsAPL(handlerInput)) {
+            let direccion = Util.getS3PreSignedUrl("Media/VideoNum1.mp4");
+            handlerInput.responseBuilder
+            .addDirective({
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            document: require('./video.json'),
+            datasources: {
+              "senias": {
+                "properties": {
+                  "Video": `${direccion}`
+                }
+              }
+            }
+            });
+          }
+        }
+        
+       
+        else if(cursoQueRecibo === 'saludos'){
+         elcurso = `Abriendo`;
+            let direccion = Util.getS3PreSignedUrl("Media/VideoSaludos1.mp4");
+            console.log(`${direccion}`);
+            handlerInput.responseBuilder
+            .addDirective({
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            document: require('./video.json'),
+            datasources: {
+              "senias": {
+                "properties": {
+                  "Video": `${direccion}`
+                }
+              }
+            }
+            });   
+        }
+       
+                else if (cursoQueRecibo === 'dias') {
+            elcurso = `Abriendo`;
+            
+            if (supportsAPL(handlerInput)) {
+            let direccion = Util.getS3PreSignedUrl("Media/VideoDias1.mp4");
+            console.log(`${direccion}`);
+            handlerInput.responseBuilder
+            .addDirective({
+            type: 'Alexa.Presentation.APL.RenderDocument',
+            document: require('./video.json'),
+            datasources: {
+              "senias": {
+                "properties": {
+                  "Video": `${direccion}`
+                }
+              }
+            }
+            });
+         }
+        }
+        
+        const speakOutput = elcurso;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -49,7 +179,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Nos vemos';
+        const speakOutput = 'Goodbye!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
@@ -109,6 +239,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         HelloWorldIntentHandler,
+        cursos,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
