@@ -1,16 +1,7 @@
-// This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
-// Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-// session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 
 const Util = require('util.js');
 
-const Escape = require('lodash/escape');
-
-// const PIC_URLS = {
-//     "Presentacion":"https://s3.amazonaws.com/o.l.p.estebanbucket/tercera+ronda+de+tendencias/WhatsApp+Image+2019-09-26+at+5.00.53+PM.jpeg",
-//     "abecedario":"https://amzn1-ask-skill-99ca56a8-5626-buildsnapshotbucket-1dwe8sjjeft1t.s3.amazonaws.com/Media/lengua-senas-mexico.jpg"
-// };
 
 function supportsAPL(handlerInput) {
     const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
@@ -24,7 +15,7 @@ const LaunchRequestHandler = {
     handle(handlerInput) {
         const speakOutput = 'Hola! Para empezar di quiero aprender el curso Insanity';
          if (supportsAPL(handlerInput)) {
-              let direccion = Util.getS3PreSignedUrl("Media/Cursos.jpg");
+             let direccion = Util.getS3PreSignedUrl("Media/Cursos.jpg");
              handlerInput.responseBuilder
             .addDirective({
             type: 'Alexa.Presentation.APL.RenderDocument',
