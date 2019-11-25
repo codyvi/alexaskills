@@ -54,30 +54,67 @@ const cursos = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'cursos';
     },
     handle(handlerInput) {
-        const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-        let elcurso;
-        let good;
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elcurso;
             if (cursoQueRecibo === 'Insanity') {
-            elcurso = `Abriendo`;
-           if (supportsAPL(handlerInput)) {
-            let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
-            console.log(`${direccion}`);
-            handlerInput.responseBuilder
-            .addDirective({
-            type: 'Alexa.Presentation.APL.RenderDocument',
-            document: require('./video.json'),
-            datasources: {
-              "senias": {
-                "properties": {
-                  "Video": `${direccion}`
+                elcurso = `Abriendo`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
                 }
-              }
             }
-            });
             
-         }
-         
-        }       
+            if (cursoQueRecibo === 'Calentamiento') {
+                elcurso = `WebOs`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            if (cursoQueRecibo === 'Ejercicio') {
+                elcurso = `Nice`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
+                }
+            }  
         
         const speakOutput = elcurso;
         return handlerInput.responseBuilder
