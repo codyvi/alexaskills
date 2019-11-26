@@ -77,7 +77,7 @@ const cursos = {
             }
             
             if (cursoQueRecibo === 'Calentamiento') {
-                elcurso = `WebOs`;
+                elcurso = `Abriendo`;
                 if (supportsAPL(handlerInput)) {
                     let direccion = Util.getS3PreSignedUrl("Media/Curso.mp4");
                     console.log(`${direccion}`);
@@ -97,7 +97,7 @@ const cursos = {
             }
             
             if (cursoQueRecibo === 'Ejercicio') {
-                elcurso = `Nice`;
+                elcurso = `Abriendo`;
                 if (supportsAPL(handlerInput)) {
                     let direccion = Util.getS3PreSignedUrl("Media/Ejercicio.mp4");
                     console.log(`${direccion}`);
