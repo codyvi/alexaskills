@@ -79,7 +79,7 @@ const cursos = {
             if (cursoQueRecibo === 'Calentamiento') {
                 elcurso = `WebOs`;
                 if (supportsAPL(handlerInput)) {
-                    let direccion = Util.getS3PreSignedUrl("Media/Calentamiento.mp4");
+                    let direccion = Util.getS3PreSignedUrl("Media/Curso.mp4");
                     console.log(`${direccion}`);
                     handlerInput.responseBuilder
                     .addDirective({
