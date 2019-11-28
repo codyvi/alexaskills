@@ -12,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola! Para empezar di inicia Insanity';
+        const speakOutput = 'Buen día, estas listo para activar tu día con esta clase de insanity. Para comenzar di Inicia Calentamiento';
          if (supportsAPL(handlerInput)) {
              let direccion = Util.getS3PreSignedUrl("Media/Cursos.jpg");
              handlerInput.responseBuilder
