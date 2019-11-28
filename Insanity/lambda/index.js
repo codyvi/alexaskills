@@ -2,7 +2,6 @@ const Alexa = require('ask-sdk-core');
 
 const Util = require('util.js');
 
-
 function supportsAPL(handlerInput) {
     const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
     const aplInterface = supportedInterfaces['Alexa.Presentation.APL'];
@@ -13,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola! Para empezar di quiero aprender el curso Insanity';
+        const speakOutput = 'Hola! Para empezar di inicia Insanity';
          if (supportsAPL(handlerInput)) {
              let direccion = Util.getS3PreSignedUrl("Media/Cursos.jpg");
              handlerInput.responseBuilder
@@ -24,7 +23,6 @@ const LaunchRequestHandler = {
               "senias": {
                 "properties": {
                   "image": direccion
-                  
                 }
               }
             }
@@ -56,30 +54,67 @@ const cursos = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'cursos';
     },
     handle(handlerInput) {
-        const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-        let elcurso;
-        let good;
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elcurso;
             if (cursoQueRecibo === 'Insanity') {
-            elcurso = `Abriendo`;
-           if (supportsAPL(handlerInput)) {
-            let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
-            console.log(`${direccion}`);
-            handlerInput.responseBuilder
-            .addDirective({
-            type: 'Alexa.Presentation.APL.RenderDocument',
-            document: require('./video.json'),
-            datasources: {
-              "senias": {
-                "properties": {
-                  "Video": `${direccion}`
+                elcurso = `Abriendo`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Test.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
                 }
-              }
             }
-            });
             
-         }
-         
-        }       
+            if (cursoQueRecibo === 'Calentamiento') {
+                elcurso = `Abriendo`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Curso.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            
+            if (cursoQueRecibo === 'Ejercicio') {
+                elcurso = `Abriendo`;
+                if (supportsAPL(handlerInput)) {
+                    let direccion = Util.getS3PreSignedUrl("Media/Ejercicio.mp4");
+                    console.log(`${direccion}`);
+                    handlerInput.responseBuilder
+                    .addDirective({
+                        type: 'Alexa.Presentation.APL.RenderDocument',
+                        document: require('./video.json'),
+                        datasources: {
+                            "senias": {
+                            "properties": {
+                            "Video": `${direccion}`
+                                }
+                            }
+                        }
+                    });
+                }
+            }  
         
         const speakOutput = elcurso;
         return handlerInput.responseBuilder
@@ -111,7 +146,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Nos vemos!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
