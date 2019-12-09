@@ -102,6 +102,58 @@ const PresupuestoHandler = {
     }
 };
 
+const DisponibleHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'disponible';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') 
+            {    
+                elproyecto = 'Tu dinero disponible en Destiny es 2750.50';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'Tu dinero disponible en Gravity es 2135.25';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const ComprometidoHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'comprometido';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') 
+            {    
+                elproyecto = 'Tu dinero comprometido en Destiny es 2750.50';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'Tu dinero comprometido en Gravity es 2135.25';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
 const ProyectosHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -182,7 +234,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Ese proyecto no se encuentra disponible, para sabeer cuales proyectos estan disponibles di proyectos.`;
+        const speakOutput = `Ese proyecto no se encuentra disponible, para saber cuales proyectos estan disponibles di proyectos.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -201,6 +253,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         ProyectosHandler,
         ErogadoHandler,
         PresupuestoHandler,
+        DisponibleHandler,
+        ComprometidoHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
