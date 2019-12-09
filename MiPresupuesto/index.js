@@ -15,19 +15,7 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
-const HelloWorldIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
-    },
-    handle(handlerInput) {
-        const speakOutput = 'Ese Proyecto no se encuentra disponible!';
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt('Di Proyectos para ver los Proyectos Disponibles')
-            .getResponse();
-    }
-};
+
 
 const CursosHandler = {
     canHandle(handlerInput) {
@@ -52,11 +40,40 @@ const CursosHandler = {
                 elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Gravity';
                 
             }
+            else{
+                elproyecto = 'Ese proyecto no se encuentra disponible, di proyectos para saber cuales estan disponibles';
+            }
 
         const speakOutput = elproyecto;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+const ErogadoHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'erogado';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') 
+            {    
+                elproyecto = 'Tu dinero erogado en Destiny es 8521.12';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'Tu dinero erogado en Gravity es 8315.30';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
             .getResponse();
     }
 };
@@ -141,7 +158,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+        const speakOutput = `Ups. Hubo un error.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -156,9 +173,9 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
-        HelloWorldIntentHandler,
         CursosHandler,
         ProyectosHandler,
+        ErogadoHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
