@@ -29,7 +29,27 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hola Daniel, di opciones para ver que podemos hacer!"
+        speak_output = "Hola Pascual, bienvenido a Mi Presupuesto! Di opciones para empezar"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                .ask(speak_output)
+                .response
+        )
+
+
+
+class HelloWorldIntentHandler(AbstractRequestHandler):
+    """Handler for Skill Launch."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+
+        return ask_utils.is_request_type("HelloWorldIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Ese proyecto no se encuentra disponible!, Di Proyectos para ver cuales estan disponibles! "
 
         return (
             handler_input.response_builder
@@ -341,11 +361,11 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 # payloads to the handlers above. Make sure any new handlers or interceptors you've
 # defined are included below. The order matters - they're processed top to bottom.
 
-#yeet
 
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
+sb.add_request_handler(HelloWorldIntentHandler())
 sb.add_request_handler(OpcionesIntentHandler())
 sb.add_request_handler(DineroGravityIntentHandler())
 sb.add_request_handler(DineroDestinyIntentHandler())
