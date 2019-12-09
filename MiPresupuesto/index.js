@@ -32,7 +32,7 @@ const CursosHandler = {
             
             if (cursoQueRecibo === 'Gravity') {
                 elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido, o disponible y Gravity.';
-                elproyecto += ' O puedes decir Todo Destiny para mostrar todos los datos.';
+                elproyecto += ' O puedes decir Todo Gravity para mostrar todos los datos.';
                 
             }
 
