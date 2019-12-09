@@ -25,8 +25,7 @@ const CursosHandler = {
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') 
-            {    
+            if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Para saber tu presupuesto, di Presupuesto Destiny';
                 elproyecto += ' , para saber tu dinero erogado, di Erogado Destiny';
                 elproyecto += ' , para saber tu dinero comprometido, di Comprometido Destiny';
@@ -58,8 +57,7 @@ const ErogadoHandler = {
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') 
-            {    
+            if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Tu dinero erogado en Destiny es 8521.12';
             }
             
@@ -84,8 +82,7 @@ const PresupuestoHandler = {
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') 
-            {    
+            if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Tu presupuesto en Destiny es 25000.50';
             }
             
@@ -110,8 +107,7 @@ const DisponibleHandler = {
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') 
-            {    
+            if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Tu dinero disponible en Destiny es 2750.50';
             }
             
@@ -136,8 +132,7 @@ const ComprometidoHandler = {
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') 
-            {    
+            if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Tu dinero comprometido en Destiny es 2750.50';
             }
             
