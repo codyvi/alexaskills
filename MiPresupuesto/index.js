@@ -40,9 +40,7 @@ const CursosHandler = {
                 elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Gravity';
                 
             }
-            else{
-                elproyecto = 'Ese proyecto no se encuentra disponible, di proyectos para saber cuales estan disponibles';
-            }
+
 
         const speakOutput = elproyecto;
         return handlerInput.responseBuilder
@@ -67,6 +65,32 @@ const ErogadoHandler = {
             
             if (cursoQueRecibo === 'Gravity') {
                 elproyecto = 'Tu dinero erogado en Gravity es 8315.30';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const PresupuestoHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'presupuesto';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') 
+            {    
+                elproyecto = 'Tu presupuesto en Destiny es 25000.50';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'Tu presupuesto en Gravity es 23250.25';
                 
             }
 
@@ -158,7 +182,7 @@ const ErrorHandler = {
     },
     handle(handlerInput, error) {
         console.log(`~~~~ Error handled: ${error.stack}`);
-        const speakOutput = `Ups. Hubo un error.`;
+        const speakOutput = `Ese proyecto no se encuentra disponible, para sabeer cuales proyectos estan disponibles di proyectos.`;
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -176,6 +200,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         CursosHandler,
         ProyectosHandler,
         ErogadoHandler,
+        PresupuestoHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
