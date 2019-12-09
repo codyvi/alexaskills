@@ -26,20 +26,15 @@ const CursosHandler = {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
             if (cursoQueRecibo === 'Destiny') {    
-                elproyecto = 'Para saber tu presupuesto, di Presupuesto Destiny';
-                elproyecto += ' , para saber tu dinero erogado, di Erogado Destiny';
-                elproyecto += ' , para saber tu dinero comprometido, di Comprometido Destiny';
-                elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Destiny';
+                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido o disponible y Destiny.';
+                elproyecto += 'O puedes decir Todo Destiny para mostrar todos los datos.';
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elproyecto = 'Para saber tu presupuesto, di Presupuesto Gravity';
-                elproyecto += ' , para saber tu dinero erogado, di Erogado Gravity';
-                elproyecto += ' , para saber tu dinero comprometido, di Comprometido Gravity';
-                elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Gravity';
+                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido o disponible y Gravity.';
+                elproyecto += 'O puedes decir Todo Destiny para mostrar todos los datos.';
                 
             }
-
 
         const speakOutput = elproyecto;
         return handlerInput.responseBuilder
@@ -134,6 +129,32 @@ const ComprometidoHandler = {
             let elproyecto;
             if (cursoQueRecibo === 'Destiny') {    
                 elproyecto = 'Tu dinero comprometido en Destiny es 2750.50';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'Tu dinero comprometido en Gravity es 2135.25';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const TodoHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'todo';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') {    
+                elproyecto = 'Tu dinero comprometido en Destiny es 2750.50';
+                elproyecto += '';
             }
             
             if (cursoQueRecibo === 'Gravity') {
@@ -250,6 +271,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         PresupuestoHandler,
         DisponibleHandler,
         ComprometidoHandler,
+        TodoHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
