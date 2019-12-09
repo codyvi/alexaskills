@@ -7,7 +7,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola Pascual, bienvenido a Mi Presupuesto! Di opciones para empezar';
+        const speakOutput = 'Hola Pascual, bienvenido a Mi Presupuesto! Di abrir y el nombre de proyecto que quieras abrir. (Para saber que proyectos hay, di proyectos)';
          
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -29,27 +29,49 @@ const HelloWorldIntentHandler = {
     }
 };
 
-const cursos = {
+const CursosHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'cursos';
     },
     handle(handlerInput) {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-            let elcurso;
-            if (cursoQueRecibo === 'Destiny') {
-                elcurso = `Yee`;
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') 
+            {    
+                elproyecto = 'Para saber tu presupuesto, di Presupuesto Destiny';
+                elproyecto += ' , para saber tu dinero erogado, di Erogado Destiny';
+                elproyecto += ' , para saber tu dinero comprometido, di Comprometido Destiny';
+                elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Destiny';
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elcurso = `Perdonen`;
+                elproyecto = 'Para saber tu presupuesto, di Presupuesto Gravity';
+                elproyecto += ' , para saber tu dinero erogado, di Erogado Gravity';
+                elproyecto += ' , para saber tu dinero comprometido, di Comprometido Gravity';
+                elproyecto += ' , y por ultimo, para saber tu dinero disponible, di Disponible Gravity';
                 
             }
 
-        const speakOutput = elcurso;
+        const speakOutput = elproyecto;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+const ProyectosHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'proyectos';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Los proyectos disponibles por ahora son Destiny y Gravity';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
             .getResponse();
     }
 };
@@ -135,7 +157,8 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         HelloWorldIntentHandler,
-        cursos,
+        CursosHandler,
+        ProyectosHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
