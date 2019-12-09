@@ -26,13 +26,13 @@ const CursosHandler = {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
             if (cursoQueRecibo === 'Destiny') {    
-                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido o disponible y Destiny.';
-                elproyecto += 'O puedes decir Todo Destiny para mostrar todos los datos.';
+                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido,o disponible y Destiny.';
+                elproyecto += ' O puedes decir Todo Destiny para mostrar todos los datos.';
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido o disponible y Gravity.';
-                elproyecto += 'O puedes decir Todo Destiny para mostrar todos los datos.';
+                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido, o disponible y Gravity.';
+                elproyecto += ' O puedes decir Todo Destiny para mostrar todos los datos.';
                 
             }
 
@@ -107,7 +107,7 @@ const DisponibleHandler = {
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elproyecto = 'Tu dinero disponible en Gravity es 2135.25';
+                elproyecto = 'Tu dinero disponible en Gravity es 2125.5';
                 
             }
 
@@ -153,12 +153,17 @@ const TodoHandler = {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
             if (cursoQueRecibo === 'Destiny') {    
-                elproyecto = 'Tu dinero comprometido en Destiny es 2750.50';
-                elproyecto += '';
+                elproyecto = 'Tu presupuesto en Destiny es 25000.50';
+                elproyecto += ', Tu dinero erogado en Destiny es 8521.12';
+                elproyecto += ', Tu dinero comprometido en Destiny es 2750.50';
+                elproyecto += ', y por último Tu dinero disponible en Destiny es 2750.50';
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elproyecto = 'Tu dinero comprometido en Gravity es 2135.25';
+                elproyecto = 'Tu presupuesto en Gravity es 23250.25';
+                elproyecto += ', Tu dinero erogado en Gravity es 8315.30';
+                elproyecto += ', Tu dinero comprometido en Gravity es 2135.25';
+                elproyecto += ', y por último Tu dinero disponible en Gravity es 2125.25';
                 
             }
 
