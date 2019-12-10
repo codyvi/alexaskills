@@ -7,7 +7,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola Pascual, bienvenido a Mi Presupuesto! Di abrir y el nombre de proyecto que quieras abrir. (Para saber que proyectos hay, di proyectos)';
+        const speakOutput = 'Hola Pascual, bienvenido a tu Presupuesto! Di abrir y el nombre de proyecto que quieras abrir. (Para saber que proyectos hay, di proyectos)';
          
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -26,12 +26,12 @@ const CursosHandler = {
             const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
             if (cursoQueRecibo === 'Destiny') {    
-                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido,o disponible y Destiny.';
+                elproyecto = 'Para saber tu presupuesto, puedes decir erogado, comprometido, o disponible seguido de Destiny.';
                 elproyecto += ' O puedes decir Todo Destiny para mostrar todos los datos.';
             }
             
             if (cursoQueRecibo === 'Gravity') {
-                elproyecto = 'Para saber tu presupuesto, dinero erogado, dinero comprometido o dinero disponible di erogado, disponible, comprometido, o disponible y Gravity.';
+                elproyecto = 'Para saber tu presupuesto, puedes decir erogado, comprometido, o disponible seguido de Gravity.';
                 elproyecto += ' O puedes decir Todo Gravity para mostrar todos los datos.';
                 
             }
@@ -211,7 +211,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Nos vemos!';
+        const speakOutput = 'Nos vemos! Aquí estaré cuando quieras conocer más de tus presupuestos';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
