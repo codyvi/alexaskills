@@ -12,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Buen día, estas listo para activar tu día con esta clase de insanity. Para comenzar di Inicia Calentamiento';
+        const speakOutput = 'Buen día, estas listo para activar tu día con esta clase de insanity. Para comenzar di Abre Calentamiento';
          if (supportsAPL(handlerInput)) {
              let direccion = Util.getS3PreSignedUrl("Media/Cursos.jpg");
              handlerInput.responseBuilder
@@ -40,10 +40,10 @@ const HelloWorldIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola!';
+        const speakOutput = 'Ese curso no se encuentra disponible!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt('Para comenzar di Inicia Calentamiento')
             .getResponse();
     }
 };
@@ -79,7 +79,7 @@ const cursos = {
             if (cursoQueRecibo === 'Calentamiento') {
                 elcurso = `Abriendo`;
                 if (supportsAPL(handlerInput)) {
-                    let direccion = Util.getS3PreSignedUrl("Media/Curso.mp4");
+                    let direccion = Util.getS3PreSignedUrl("Media/Curso2.mp4");
                     console.log(`${direccion}`);
                     handlerInput.responseBuilder
                     .addDirective({
@@ -99,7 +99,7 @@ const cursos = {
             if (cursoQueRecibo === 'Ejercicio') {
                 elcurso = `Abriendo`;
                 if (supportsAPL(handlerInput)) {
-                    let direccion = Util.getS3PreSignedUrl("Media/Ejercicio.mp4");
+                    let direccion = Util.getS3PreSignedUrl("Media/Ejercicio2.mp4");
                     console.log(`${direccion}`);
                     handlerInput.responseBuilder
                     .addDirective({
