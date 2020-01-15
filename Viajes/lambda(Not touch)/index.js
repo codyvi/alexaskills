@@ -22,15 +22,47 @@ const NombreHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
     },
     handle(handlerInput) {
-            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            if (cursoQueRecibo === 'Destiny') {    
+           
+            if (nombreQueRecibo === 'Pascual') {    
                 elproyecto = 'que onda bro';
             }
             
-            if (cursoQueRecibo === 'Gravity') {
+            if (nombreQueRecibo === 'Juan') {
+                elproyecto = 'que onda bro';    
+            }
+
+            if (nombreQueRecibo === 'Héctor') {    
                 elproyecto = 'que onda bro';
-                
+            }
+            
+            if (nombreQueRecibo === 'Hernán') {
+                elproyecto = 'que onda bro';      
+            }
+
+            if (nombreQueRecibo === 'Guillermo') {    
+                elproyecto = 'que onda bro';
+            }
+            
+            if (nombreQueRecibo === 'Felisa') {
+                elproyecto = 'que onda bro';    
+            }
+
+            if (nombreQueRecibo === 'Elizabeth') {    
+                elproyecto = 'que onda bro';
+            }
+            
+            if (nombreQueRecibo === 'David') {
+                elproyecto = 'que onda bro';      
+            }
+
+            if (nombreQueRecibo === 'Bruno') {
+                elproyecto = 'que onda bro';      
+            }
+            
+            if (nombreQueRecibo === 'Salvador') {
+                elproyecto = 'que onda bro';      
             }
 
         const speakOutput = elproyecto;
