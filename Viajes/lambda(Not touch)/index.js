@@ -15,6 +15,33 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
+
+const NombreHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
+    },
+    handle(handlerInput) {
+            const cursoQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            let elproyecto;
+            if (cursoQueRecibo === 'Destiny') {    
+                elproyecto = 'que onda bro';
+            }
+            
+            if (cursoQueRecibo === 'Gravity') {
+                elproyecto = 'que onda bro';
+                
+            }
+
+        const speakOutput = elproyecto;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+
 const HelloWorldIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -108,6 +135,7 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
+        NombreHandler,
         HelloWorldIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
