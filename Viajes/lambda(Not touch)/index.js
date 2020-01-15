@@ -22,7 +22,7 @@ const NombreHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
     },
     handle(handlerInput) {
-            const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.curso.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
            
             if (nombreQueRecibo === 'Pascual') {    
