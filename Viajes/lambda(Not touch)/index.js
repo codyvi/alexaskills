@@ -26,43 +26,43 @@ const NombreHandler = {
             let elproyecto;
            
             if (nombreQueRecibo === 'Pascual') {    
-                elproyecto = 'que onda bro';
+                elproyecto = 'Hola Pascual, prueba a preguntar cuanto llevas gastado.';
             }
             
             if (nombreQueRecibo === 'Juan') {
-                elproyecto = 'que onda bro';    
+                elproyecto = 'Hola Juan, prueba a preguntar cuanto llevas gastado.';    
             }
 
             if (nombreQueRecibo === 'Héctor') {    
-                elproyecto = 'que onda bro';
+                elproyecto = 'Hola Héctor, prueba a preguntar cuanto llevas gastado.';
             }
             
             if (nombreQueRecibo === 'Hernán') {
-                elproyecto = 'que onda bro';      
+                elproyecto = 'Hola Hernán, prueba a preguntar cuanto llevas gastado.';      
             }
 
             if (nombreQueRecibo === 'Guillermo') {    
-                elproyecto = 'que onda bro';
+                elproyecto = 'Hola Guillermo, prueba a preguntar cuanto llevas gastado.';
             }
             
             if (nombreQueRecibo === 'Felisa') {
-                elproyecto = 'que onda bro';    
+                elproyecto = 'Hola Felisa, prueba a preguntar cuanto llevas gastado.';    
             }
 
             if (nombreQueRecibo === 'Elizabeth') {    
-                elproyecto = 'que onda bro';
+                elproyecto = 'Hola Elizabeth, prueba a preguntar cuanto llevas gastado.';
             }
             
             if (nombreQueRecibo === 'David') {
-                elproyecto = 'que onda bro';      
+                elproyecto = 'Hola David, prueba a preguntar cuanto llevas gastado.';      
             }
 
             if (nombreQueRecibo === 'Bruno') {
-                elproyecto = 'que onda bro';      
+                elproyecto = 'Hola Bruno, prueba a preguntar cuanto llevas gastado.';      
             }
             
             if (nombreQueRecibo === 'Salvador') {
-                elproyecto = 'que onda bro';      
+                elproyecto = 'Hola Pascual, prueba a preguntar cuanto llevas gastado.';      
             }
 
         const speakOutput = elproyecto;
@@ -108,7 +108,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Nos vemos!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
