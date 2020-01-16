@@ -25,46 +25,8 @@ const NombreHandler = {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
            
-            if (nombreQueRecibo === 'Pascual') {    
-                elproyecto = 'Hola Pascual, prueba a preguntar cuanto llevas gastado.';
-            }
-            
-            if (nombreQueRecibo === 'Juan') {
-                elproyecto = 'Hola Juan, prueba a preguntar cuanto llevas gastado.';    
-            }
 
-            if (nombreQueRecibo === 'Héctor') {    
-                elproyecto = 'Hola Héctor, prueba a preguntar cuanto llevas gastado.';
-            }
-            
-            if (nombreQueRecibo === 'Hernán') {
-                elproyecto = 'Hola Hernán, prueba a preguntar cuanto llevas gastado.';      
-            }
-
-            if (nombreQueRecibo === 'Guillermo') {    
-                elproyecto = 'Hola Guillermo, prueba a preguntar cuanto llevas gastado.';
-            }
-            
-            if (nombreQueRecibo === 'Felisa') {
-                elproyecto = 'Hola Felisa, prueba a preguntar cuanto llevas gastado.';    
-            }
-
-            if (nombreQueRecibo === 'Elizabeth') {    
-                elproyecto = 'Hola Elizabeth, prueba a preguntar cuanto llevas gastado.';
-            }
-            
-            if (nombreQueRecibo === 'David') {
-                elproyecto = 'Hola David, prueba a preguntar cuanto llevas gastado.';      
-            }
-
-            if (nombreQueRecibo === 'Bruno') {
-                elproyecto = 'Hola Bruno, prueba a preguntar cuanto llevas gastado.';      
-            }
-            
-            if (nombreQueRecibo === 'Salvador') {
-                elproyecto = 'Hola Pascual, prueba a preguntar cuanto llevas gastado.';      
-            }
-
+            elproyecto = `Hola ${nombreQueRecibo}, prueba preguntar cuanto llevas gastado.`;
         const speakOutput = elproyecto;
         return handlerInput.responseBuilder
             .speak(speakOutput)
