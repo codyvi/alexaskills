@@ -24,13 +24,12 @@ const NombreHandler = {
     handle(handlerInput) {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-           
-
             elproyecto = `Hola ${nombreQueRecibo}, prueba preguntar cuanto llevas gastado.`;
-        const speakOutput = elproyecto;
-        return handlerInput.responseBuilder
+            const speakOutput = elproyecto;
+        
+            return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt('Prueba a preguntar cuanto llevas gastado')
             .getResponse();
     }
 };
