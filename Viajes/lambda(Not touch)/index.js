@@ -25,11 +25,13 @@ const NombreHandler = {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
+            //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
              if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?')
              {
-                 elproyecto = 'SI JALOOO';
+                 elproyecto = 'Hola David, en el periodo Julio-Diciembre del 2019 llevas gastados:';
+                 elproyecto += ' 4.5 Millones de pesos,  comparado con tu plan, vas 450 mil pesos excedido, equivalente a un 10%...Comparado con el año anterior llevas XX mil de pesos o XX mdp equivalente a XX%';
+                 elproyecto += ' Recuerda que el compromiso es disminuir los gastos del viaje al 50% en la segunda parte del año, por lo que no podrás excederte de XXMDP o XX miles de pesos en los siguientes 6 meses.';
              }
             const speakOutput = elproyecto;
         
