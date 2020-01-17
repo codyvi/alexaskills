@@ -34,7 +34,7 @@ const NombreHandler = {
                  elproyecto += ' Recuerda que el compromiso es disminuir los gastos del viaje al 50% en la segunda parte del año, por lo que no podrás excederte de XXMDP o XX miles de pesos en los siguientes 6 meses.';
              }
 
-             else if(nombreQueRecibo === 'David' && preguntaQueRecibo === 'Otra')
+             else if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuál de las áreas es la que está excedida?')
              {
                  elproyecto = 'Hola David, este es un ejemplo de otra pregunta que puedes hacer!'
              }
