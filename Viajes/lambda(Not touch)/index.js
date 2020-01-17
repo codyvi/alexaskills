@@ -26,6 +26,11 @@ const NombreHandler = {
             const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
             elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
+
+             if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?')
+             {
+                 elproyecto = 'SI JALOOO';
+             }
             const speakOutput = elproyecto;
         
             return handlerInput.responseBuilder
