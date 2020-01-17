@@ -27,7 +27,7 @@ const NombreHandler = {
             let elproyecto;
             //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-             if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?')
+             if(nombreQueRecibo === 'David' && (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?'))
              {
                  elproyecto = 'Hola David, en el periodo Julio-Diciembre del 2019 llevas gastados:';
                  elproyecto += ' 4.5 Millones de pesos,  comparado con tu plan, vas 450 mil pesos excedido, equivalente a un 10%...Comparado con el año anterior llevas XX mil de pesos o XX mdp equivalente a XX%';
