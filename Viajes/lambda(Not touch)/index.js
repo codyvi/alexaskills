@@ -23,8 +23,9 @@ const NombreHandler = {
     },
     handle(handlerInput) {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
-            elproyecto = `Hola ${nombreQueRecibo}, prueba preguntar cuanto llevas gastado.`;
+            elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
             const speakOutput = elproyecto;
         
             return handlerInput.responseBuilder
@@ -33,8 +34,6 @@ const NombreHandler = {
             .getResponse();
     }
 };
-
-
 
 const HelpIntentHandler = {
     canHandle(handlerInput) {
@@ -117,7 +116,6 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         NombreHandler,
-        HelloWorldIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
