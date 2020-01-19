@@ -68,7 +68,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Nos vemos! Aqui estare si me necesitas.';
+        const speakOutput = 'Nos vemos! Aqui estare cuando quieras conocer más de tus gastos de viajes.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
