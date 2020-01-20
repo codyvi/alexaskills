@@ -61,6 +61,7 @@ const HelpIntentHandler = {
             .getResponse();
     }
 };
+
 const CancelAndStopIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -74,6 +75,7 @@ const CancelAndStopIntentHandler = {
             .getResponse();
     }
 };
+
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
