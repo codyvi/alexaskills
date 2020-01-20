@@ -38,6 +38,8 @@ const NombreHandler = {
              {
                  elproyecto = 'Hola David, este es un ejemplo de otra pregunta que puedes hacer!'
              }
+
+             
             const speakOutput = elproyecto;
         
             return handlerInput.responseBuilder
