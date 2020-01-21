@@ -1,0 +1,33 @@
+{
+    {
+        vp:"David",
+        gastosjd19: 54.3,
+        planjd19: 0,
+        varvsplan2019: 54.3,
+        gastosjd18: 46,
+        varvsplan2018: 8.5, 
+        gastosjd14: 17.6,
+        varvsplan2014: 7.3
+    },
+    {
+        vp:"Victor",
+        gastosjd19: 11,
+        planjd19: 0,
+        gastosjd18: 16,
+        gastosjd14: 1 
+    },
+    {
+        vp:"Juan Pablo",
+        gastosjd19: 7,
+        planjd19: 6.7,
+        gastosjd18: 5,
+        gastosjd14: 2 
+    },
+    {
+        vp:"Hernán",
+        gastosjd19: 4,
+        planjd19: 0,
+        gastosjd18: 45,
+        gastosjd14: 17 
+    },
+}
