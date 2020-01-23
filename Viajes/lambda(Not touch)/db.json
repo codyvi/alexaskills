@@ -31,12 +31,33 @@
     },
     {
         "vp":"Hernán",
-        "gastosjd19": 54.3,
-        "planjd19": 0,
-        "varvsplan2019": 54.3,
-        "gastosjd18": 46,
-        "varvsplan2018": 8.5, 
-        "gastosjd14": 17.6,
-        "varvsplan2014": 7.3
+        "gastosjd19": 4.7,
+        "planjd19": 2.4,
+        "varvsplan2019": 2.3,
+        "gastosjd18": 4.4,
+        "varvsplan2018": 0.3, 
+        "gastosjd14": 1.4,
+        "varvsplan2014": 0.7
     },
+    {
+        "vp":"Bruno",
+        "gastosjd19": 6.3,
+        "planjd19": 6.5,
+        "varvsplan2019": -0.2,
+        "gastosjd18": 2.4,
+        "varvsplan2018": 3.9, 
+        "gastosjd14": 1.1,
+        "varvsplan2014": 1.0
+    },
+    {
+        "vp":"Rodolfo",
+        "gastosjd19": 4.2,
+        "planjd19": 3.6,
+        "varvsplan2019": 0.6,
+        "gastosjd18": 3.6,
+        "varvsplan2018": 0.6, 
+        "gastosjd14": 0.5,
+        "varvsplan2014": 0.7
+    },
+}
 }
