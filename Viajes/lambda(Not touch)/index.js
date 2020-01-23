@@ -3,7 +3,7 @@
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
-const API = require('./apiUtils.js');
+const API = require('./apiUtil.js');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -23,7 +23,7 @@ const NombreHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let elproyecto;
