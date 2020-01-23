@@ -29,12 +29,12 @@ const NombreHandler = {
             let elproyecto;
             //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-             if(nombreQueRecibo === 'David' && (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?'))
-             {
-                 elproyecto = 'Claro David, tus gastos en el periodo agosto-diciembre del 2019 son ';
-                 let gastos = await API.findVP(nombreQueRecibo);
-                 elproyecto += gastos + ' millones de pesos.';
-             }
+            if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
+            {
+                elproyecto = `Claro ${nombreQueRecibo}, tus gastos en el periodo agosto-diciembre del 2019 son `;
+                let gastos = await API.findVP(nombreQueRecibo);
+                elproyecto += gastos + ' millones de pesos.';
+            }
 
              else if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuál de las áreas es la que está excedida?')
              {
