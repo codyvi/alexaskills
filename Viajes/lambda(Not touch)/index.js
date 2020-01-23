@@ -2,6 +2,8 @@
 // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
 // session persistence, api calls, and more.
 const Alexa = require('ask-sdk-core');
+const fetch = require('node-fetch');
+const API = require('./apiUtils.js');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -29,9 +31,9 @@ const NombreHandler = {
 
              if(nombreQueRecibo === 'David' && (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?'))
              {
-                 elproyecto = 'Hola David, en el periodo Julio-Diciembre del 2019 llevas gastados:';
-                 elproyecto += ' 4.5 Millones de pesos,  comparado con tu plan, vas 450 mil pesos excedido, equivalente a un 10%...Comparado con el año anterior llevas XX mil de pesos o XX mdp equivalente a XX%';
-                 elproyecto += ' Recuerda que el compromiso es disminuir los gastos del viaje al 50% en la segunda parte del año, por lo que no podrás excederte de XXMDP o XX miles de pesos en los siguientes 6 meses.';
+                 elproyecto = 'Claro David, tus gastos en el periodo agosto-diciembre del 2019 son ';
+                 let gastos = await API.findVP(nombreQueRecibo);
+                 elproyecto += gastos + ' millones de pesos.';
              }
 
              else if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuál de las áreas es la que está excedida?')
