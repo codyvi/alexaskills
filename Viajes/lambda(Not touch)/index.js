@@ -32,7 +32,7 @@ const NombreHandler = {
             if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
             {
                 elproyecto = `Claro ${nombreQueRecibo}, tus gastos en el periodo agosto-diciembre del 2019 son `;
-                let gastos = await API.findVP(nombreQueRecibo);
+                let gastos = await API.findgastosjd19(nombreQueRecibo);
                 elproyecto += gastos + ' millones de pesos.';
             }
 
