@@ -12,6 +12,18 @@ module.exports.findgastosjd19 = async function findgastosjd19(slotUsuario) {
   return gastos;
 }
 
+module.exports.findvpName = async function findvpName(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].vp === slotUsuario) {
+                gastos = data[i].vpName;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+}
+
 module.exports.findplanjd19 = async function findplanjd19(slotUsuario) {
     let data = await getVP();
     let gastos = '';
