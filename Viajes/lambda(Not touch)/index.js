@@ -10,7 +10,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para autenticarte y ver tu información sobre el presupuesto.';
+        const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para ver tu información sobre el presupuesto.';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -24,31 +24,41 @@ const NombreHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
     },
     async handle(handlerInput) {
-            const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-            let elproyecto;
-            //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
+        const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+     
+        let elproyecto;
+        //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-            if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
-            {
-                elproyecto = `Claro ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
-                let vicepresidencia = await API.findvpName(nombreQueRecibo);
-                elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-                let gastos = await API.findgastosjd19(nombreQueRecibo);
-                elproyecto += gastos + ' millones de pesos.';
-            }
-
-             else if(nombreQueRecibo === 'David' && preguntaQueRecibo === '¿Cuál de las áreas es la que está excedida?')
-             {
-                 elproyecto = 'Hola David, este es un ejemplo de otra pregunta que puedes hacer!'
-             }
-
-             
-            const speakOutput = elproyecto;
+        elproyecto = `Claro ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
+        let vicepresidencia = await API.findvpName(nombreQueRecibo);
+        elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
+        let gastos = await API.findgastosjd19(nombreQueRecibo);
+        elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
         
-            return handlerInput.responseBuilder
+        const prevSession = handlerInput.attributesManager.getSessionAttributes();
+        prevSession["Nombre"] = nombreQueRecibo;
+        handlerInput.attributesManager.setSessionAttributes(prevSession);
+        const speakOutput = elproyecto;
+
+        return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('Prueba a preguntar cuanto llevas gastado')
+            .getResponse();
+    }
+};
+
+
+const FollowUpUnoHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FollowUpUno';
+    },
+    handle(handlerInput) {
+        const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+        speakOutput = preguntaQueRecibo;
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
             .getResponse();
     }
 };
@@ -136,6 +146,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         NombreHandler,
+        FollowUpUnoHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
