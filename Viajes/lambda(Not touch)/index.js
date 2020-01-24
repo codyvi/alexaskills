@@ -29,7 +29,7 @@ const NombreHandler = {
         let elproyecto;
         //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-        elproyecto = `Claro ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
+        elproyecto = `Hola ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
         let vicepresidencia = await API.findvpName(nombreQueRecibo);
         elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
         let gastos = await API.findgastosjd19(nombreQueRecibo);
@@ -68,7 +68,7 @@ const FollowUpUnoHandler = {
                 elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
             }
 
-            elseif(preguntaQueRecibo === '¿Como voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
+            elseif(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
             {
                 elproyecto = `Comparado con tu plan ${name}, vas `;
                 let exce = await API.findvarvsplan2019(name);
