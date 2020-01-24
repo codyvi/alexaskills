@@ -33,7 +33,7 @@ const NombreHandler = {
             {
                 elproyecto = `Claro ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
                 let vicepresidencia = await API.findvpName(nombreQueRecibo);
-                elproyecto += vicepresidencia + ' el periodo agosto-diciembre del 2019 son ';
+                elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
                 let gastos = await API.findgastosjd19(nombreQueRecibo);
                 elproyecto += gastos + ' millones de pesos.';
             }
