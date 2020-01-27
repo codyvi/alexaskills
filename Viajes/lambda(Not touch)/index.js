@@ -57,10 +57,13 @@ const FollowUpUnoHandler = {
         const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
         const prevSession = handlerInput.attributesManager.getSessionAttributes();
         let name = prevSession.Nombre;
+        let elproyecto;
         if (name)
         {
+            
             if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
             {
+                
                 elproyecto = `Claro ${name}, tus gastos en  la vicepresidencia `;
                 let vicepresidencia = await API.findvpName(name);
                 elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
@@ -68,7 +71,7 @@ const FollowUpUnoHandler = {
                 elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
             }
 
-            elseif(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
+            else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
             {
                 elproyecto = `Comparado con tu plan ${name}, vas `;
                 let exce = await API.findvarvsplan2019(name);
@@ -77,7 +80,7 @@ const FollowUpUnoHandler = {
             
         }
 
-        speakOutput = elproyecto;
+        const speakOutput = elproyecto;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
