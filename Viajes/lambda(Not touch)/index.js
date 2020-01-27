@@ -29,12 +29,24 @@
             let elproyecto;
             //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-            elproyecto = `Hola ${nombreQueRecibo}, tus gastos en  la vicepresidencia `;
-            let vicepresidencia = await API.findvpName(nombreQueRecibo);
-            elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-            let gastos = await API.findgastosjd19(nombreQueRecibo);
-            elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
-            
+            if(nombreQueRecibo === 'David' || nombreQueRecibo === 'Salvador')
+            {
+                elproyecto = `Hola ${nombreQueRecibo}, tus gastos en `
+                let vicepresidencia = await API.findvpName(nombreQueRecibo);
+                elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
+                let gastos = await API.findgastosjd19(nombreQueRecibo);
+                elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+            }
+
+            else
+            {
+                elproyecto = `Hola ${nombreQueRecibo}, tus gastos en la vicepresidencia `;
+                let vicepresidencia = await API.findvpName(nombreQueRecibo);
+                elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
+                let gastos = await API.findgastosjd19(nombreQueRecibo);
+                elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+            }
+
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             prevSession["Nombre"] = nombreQueRecibo;
             handlerInput.attributesManager.setSessionAttributes(prevSession);
