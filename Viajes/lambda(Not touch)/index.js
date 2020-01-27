@@ -75,7 +75,7 @@ const FollowUpUnoHandler = {
             {
                 elproyecto = `Comparado con tu plan ${name}, vas `;
                 let exce = await API.findvarvsplan2019(name);
-                elproyecto += exce + ' excedidos';
+                elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
             }
             
         }
