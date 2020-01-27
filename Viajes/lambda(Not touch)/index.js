@@ -75,12 +75,23 @@
                 
                 if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
                 {
-                    
-                    elproyecto = `Claro ${name}, tus gastos en  la vicepresidencia `;
-                    let vicepresidencia = await API.findvpName(name);
-                    elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-                    let gastos = await API.findgastosjd19(name);
-                    elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                    if(nombreQueRecibo === 'David' || nombreQueRecibo === 'Salvador')
+                    {
+                        elproyecto = `Hola ${nombreQueRecibo}, tus gastos en `
+                        let vicepresidencia = await API.findvpName(nombreQueRecibo);
+                        elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
+                        let gastos = await API.findgastosjd19(nombreQueRecibo);
+                        elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                    }
+        
+                    else
+                    {
+                        elproyecto = `Hola ${nombreQueRecibo}, tus gastos en la vicepresidencia `;
+                        let vicepresidencia = await API.findvpName(nombreQueRecibo);
+                        elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
+                        let gastos = await API.findgastosjd19(nombreQueRecibo);
+                        elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                    }
                 }
 
                 else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
