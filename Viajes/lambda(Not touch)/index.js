@@ -98,31 +98,64 @@
                 {
                     elproyecto = `Comparado con tu plan ${name}, vas `;
                     let exce = await API.findvarvsplan2019(name);
-                    elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                    if(exce > 0)
+                    {
+                        elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                    }
+
+                    else
+                    {
+                        elproyecto += exce + ' por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                    }
+                    
                 }
 
                 else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
                 {
                     elproyecto = `Comparado con el año anterior ${name}, vas `;
                     let exce = await API.findvarvsplan2018(name);
-                    elproyecto += exce + ' excedidos. ¿Quieres aber alguna otra pregunta?';
+                    if(exce > 0)
+                    {
+                        elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                    }
+
+                    else
+                    {
+                        elproyecto += exce + ' por debajo del año anterior. ¿Quieres saber alguna otra pregunta?';
+                    }
                 }
 
                 else if(preguntaQueRecibo === 'Dame toda la información' || preguntaQueRecibo === 'Dime toda la información que tengas de mi presupuesto')
                 {
                     if(name === 'David' || name === 'Salvador')
                     {
-                        elproyecto = `Hola ${name}, tus gastos en `
+                        elproyecto = `Claro ${name}, tus gastos en `
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
                         elproyecto += gastos + ' millones de pesos.';
                         elproyecto += ` Comparado con tu plan ${name}, vas `;
                         let exce = await API.findvarvsplan2019(name);
-                        elproyecto += exce + ' excedidos.';
+                        if(exce > 0)
+                        {
+                            elproyecto += exce + ' excedidos.';
+                        }
+    
+                        else
+                        {
+                            elproyecto += exce + ' por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                        }
                         elproyecto += ` Comparado con el año anterior ${name}, vas `;
                         let exce2 = await API.findvarvsplan2018(name);
-                        elproyecto += exce2 + ' excedidos. ¿Quieres aber alguna otra pregunta?';
+                        if(exce > 0)
+                        {
+                            elproyecto += exce2 + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                        }
+    
+                        else
+                        {
+                            elproyecto += exce2 + ' por debajo del año anterior. ¿Quieres saber alguna otra pregunta?';
+                        }
                    
                     }
         
