@@ -100,12 +100,31 @@
                     let exce = await API.findvarvsplan2019(name);
                     if(exce > 0)
                     {
-                        elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                        if(exce < 1)
+                        {
+                            exce = exce*1000000;
+                            elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                        }
+                        else
+                        {
+                            elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                        }
+                        
                     }
 
                     else
                     {
-                        elproyecto += exce + ' por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                        newexce = Math.abs(exce);
+                        if(newexce < 1)
+                        {
+                            exce = exce*1000000;
+                            elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                        }
+                        else
+                        {
+                            elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                        }
+                        
                     }
                     
                 }
@@ -116,12 +135,30 @@
                     let exce = await API.findvarvsplan2018(name);
                     if(exce > 0)
                     {
-                        elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                        if(exce < 1)
+                        {
+                            exce = exce*1000000;
+                            elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                        }
+                        else
+                        {
+                            elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                        }
                     }
 
                     else
                     {
-                        elproyecto += exce + ' por debajo del año anterior. ¿Quieres saber alguna otra pregunta?';
+                        newexce = Math.abs(exce);
+                        if(newexce < 1)
+                        {
+                            exce = exce*1000000;
+                            elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                        }
+                        
+                        else
+                        {
+                            elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                        }
                     }
                 }
 
@@ -207,7 +244,7 @@
                     || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
         },
         handle(handlerInput) {
-            const speakOutput = 'Nos vemos! Aqui estare cuando quieras conocer más de tus gastos de viajes.';
+            const speakOutput = 'Nos vemos! Aqui estare cuando quieras conocer más de tus gastos de viaje.';
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .getResponse();
