@@ -94,7 +94,7 @@
                     }
                 }
 
-                else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?')
+                else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?' || preguntaQueRecibo === '¿Cómo voy comparado con mi plan?')
                 {
                     elproyecto = `Comparado con tu plan ${name}, vas `;
                     let exce = await API.findvarvsplan2019(name);
