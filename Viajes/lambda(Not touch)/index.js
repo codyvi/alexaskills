@@ -244,10 +244,66 @@
                         elproyecto += gastos + ' millones de pesos.';
                         elproyecto = ` Comparado con tu plan vas `;
                         let exce = await API.findvarvsplan2019(name);
-                        elproyecto += exce + ' excedidos.';
-                        elproyecto = ` Comparado con el año anterior vas `;
+                        if(exce > 0)
+                        {
+                            if(exce < 1)
+                            {
+                                exce = exce*1000000;
+                                elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                            }
+                            else
+                            {
+                                elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                            }
+                            
+                        }
+    
+                        else
+                        {
+                            newexce = Math.abs(exce);
+                            if(newexce < 1)
+                            {
+                                exce = exce*1000000;
+                                elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                            }
+    
+                            else
+                            {
+                                elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                            }
+                        }
+
+                        elproyecto += ` Comparado con el año anterior vas `;
                         let exce2 = await API.findvarvsplan2018(name);
-                        elproyecto += exce2 + ' excedidos. ¿Quieres aber alguna otra pregunta?';
+                        if(exce2 > 0)
+                        {
+                            if(exce2 < 1)
+                            {
+                                exce2 = exce2*1000000;
+                                elproyecto += exce2 + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                            }
+                            else
+                            {
+                                elproyecto += exce2 + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                            }
+                            
+                        }
+    
+                        else
+                        {
+                            newexce = Math.abs(exce2);
+                            if(newexce < 1)
+                            {
+                                exce2 = exce2*1000000;
+                                elproyecto += exce2 + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                            }
+    
+                            else
+                            {
+                                elproyecto += exce2 + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                            }
+                        }
+                        
                     }
                 }
                 
