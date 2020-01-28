@@ -114,7 +114,7 @@
 
                     else
                     {
-                        newexce = Math.abs(exce);
+                        let newexce = Math.abs(exce);
                         if(newexce < 1)
                         {
                             exce = exce*1000000;
@@ -148,7 +148,7 @@
 
                     else
                     {
-                        newexce = Math.abs(exce);
+                        let newexce = Math.abs(exce);
                         if(newexce < 1)
                         {
                             exce = exce*1000000;
@@ -178,27 +178,27 @@
                             if(exce < 1)
                             {
                                 exce = exce*1000000;
-                                elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' pesos excedidos.';
                             }
                             else
                             {
-                                elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                                elproyecto += exce + ' millones de pesos excedidos.'; 
                             }
                             
                         }
     
                         else
                         {
-                            newexce = Math.abs(exce);
+                            let newexce = Math.abs(exce);
                             if(newexce < 1)
                             {
                                 exce = exce*1000000;
-                                elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' miles por debajo de tu plan.';
                             }
     
                             else
                             {
-                                elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' millones excedidos.';
                             }
                         }
 
@@ -220,7 +220,7 @@
     
                         else
                         {
-                            newexce = Math.abs(exce2);
+                            let newexce = Math.abs(exce2);
                             if(newexce < 1)
                             {
                                 exce2 = exce2*1000000;
@@ -249,27 +249,27 @@
                             if(exce < 1)
                             {
                                 exce = exce*1000000;
-                                elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' pesos excedidos.';
                             }
                             else
                             {
-                                elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                                elproyecto += exce + ' millones de pesos excedidos.'; 
                             }
                             
                         }
     
                         else
                         {
-                            newexce = Math.abs(exce);
+                            let newexce = Math.abs(exce);
                             if(newexce < 1)
                             {
                                 exce = exce*1000000;
-                                elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' miles por debajo de tu plan. ';
                             }
     
                             else
                             {
-                                elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce + ' millones excedidos.';
                             }
                         }
 
@@ -291,7 +291,7 @@
     
                         else
                         {
-                            newexce = Math.abs(exce2);
+                            let newexce = Math.abs(exce2);
                             if(newexce < 1)
                             {
                                 exce2 = exce2*1000000;
