@@ -152,7 +152,7 @@
                         if(newexce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
                         }
 
                         else
