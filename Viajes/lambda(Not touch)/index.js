@@ -77,7 +77,7 @@
                 {
                     if(name === 'David' || name === 'Salvador')
                     {
-                        elproyecto = `Hola ${name}, tus gastos en `
+                        elproyecto = `Claro, tus gastos en `
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
@@ -86,7 +86,7 @@
         
                     else
                     {
-                        elproyecto = `Hola ${name}, tus gastos en la vicepresidencia `;
+                        elproyecto = `Claro, tus gastos en la vicepresidencia `;
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
@@ -96,7 +96,7 @@
 
                 else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?' || preguntaQueRecibo === '¿Cómo voy comparado con mi plan?')
                 {
-                    elproyecto = `Comparado con tu plan ${name}, vas `;
+                    elproyecto = `Comparado con tu plan, vas `;
                     let exce = await API.findvarvsplan2019(name);
                     if(exce > 0)
                     {
@@ -131,7 +131,7 @@
 
                 else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
                 {
-                    elproyecto = `Comparado con el año anterior ${name}, vas `;
+                    elproyecto = `Comparado con el año anterior, vas `;
                     let exce = await API.findvarvsplan2018(name);
                     if(exce > 0)
                     {
@@ -166,7 +166,7 @@
                 {
                     if(name === 'David' || name === 'Salvador')
                     {
-                        elproyecto = `Claro ${name}, tus gastos en `
+                        elproyecto = `Claro, tus gastos en `
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
@@ -237,7 +237,7 @@
         
                     else
                     {
-                        elproyecto = `Hola ${name}, tus gastos en la vicepresidencia `;
+                        elproyecto = `Claro, tus gastos en la vicepresidencia `;
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
