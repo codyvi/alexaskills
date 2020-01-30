@@ -1,6 +1,6 @@
 # Alexa Skills
 
-Repositorio para poner mis SKills de Alexa
+Repositorio para poner mis Skills de Alexa
 
 ## Uso
 
