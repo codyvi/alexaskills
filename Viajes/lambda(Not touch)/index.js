@@ -35,7 +35,7 @@
                 let vicepresidencia = await API.findvpName(nombreQueRecibo);
                 elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
                 let gastos = await API.findgastosjd19(nombreQueRecibo);
-                elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
             }
 
             else
@@ -44,7 +44,7 @@
                 let vicepresidencia = await API.findvpName(nombreQueRecibo);
                 elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
                 let gastos = await API.findgastosjd19(nombreQueRecibo);
-                elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
             }
 
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
@@ -54,7 +54,7 @@
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
-                .reprompt('Prueba a preguntar cuanto llevas gastado')
+                .reprompt('Prueba a preguntar cuánto llevas gastado')
                 .getResponse();
         }
     };
@@ -81,7 +81,7 @@
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                        elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
                     }
         
                     else
@@ -90,7 +90,7 @@
                         let vicepresidencia = await API.findvpName(name);
                         elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
                         let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos. ¿Quieres saber alguna otra pregunta?';
+                        elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
                     }
                 }
 
@@ -103,11 +103,11 @@
                         if(exce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' pesos excedidos. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                            elproyecto += exce + ' millones de pesos excedidos. ' + saberAlgoMas; 
                         }
                         
                     }
@@ -118,11 +118,11 @@
                         if(newexce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + '  pesos por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + '  pesos por debajo de tu plan. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' millones de pesos por debajo de tu plan. ' + saberAlgoMas;
                         }
                         
                     }
@@ -131,18 +131,18 @@
 
                 else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
                 {
-                    elproyecto = `Comparado con el año anterior, vas `;
+                    elproyecto = `En comparación, en este periodo has gastado `;
                     let exce = await API.findvarvsplan2018(name);
                     if(exce > 0)
                     {
                         if(exce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' pesos más que el año anterior. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                            elproyecto += exce + ' millones de pesos más que el año anterior. ' + saberAlgoMas; 
                         }
                     }
 
@@ -152,12 +152,12 @@
                         if(newexce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' excedidos. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' pesos menos que el año anterior. ' + saberAlgoMas;
                         }
 
                         else
                         {
-                            elproyecto += exce + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                            elproyecto += exce + ' millones menos que el año anterior. ' + saberAlgoMas;
                         }
                     }
                 }
@@ -209,11 +209,11 @@
                             if(exce2 < 1)
                             {
                                 exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' pesos excedidos. ' + saberAlgoMas;
                             }
                             else
                             {
-                                elproyecto += exce2 + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                                elproyecto += exce2 + ' millones de pesos excedidos. ' + saberAlgoMas; 
                             }
                             
                         }
@@ -224,12 +224,12 @@
                             if(newexce < 1)
                             {
                                 exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' miles por debajo de tu plan. ' + saberAlgoMas;
                             }
     
                             else
                             {
-                                elproyecto += exce2 + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' millones excedidos. ' + saberAlgoMas;
                             }
                         }
                    
@@ -280,11 +280,11 @@
                             if(exce2 < 1)
                             {
                                 exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' pesos excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' pesos excedidos. ' + saberAlgoMas;
                             }
                             else
                             {
-                                elproyecto += exce2 + ' millones de pesos excedidos. ¿Quieres saber alguna otra pregunta?'; 
+                                elproyecto += exce2 + ' millones de pesos excedidos. ' + saberAlgoMas; 
                             }
                             
                         }
@@ -295,12 +295,12 @@
                             if(newexce < 1)
                             {
                                 exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' miles por debajo de tu plan. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' miles por debajo de tu plan. ' + saberAlgoMas;
                             }
     
                             else
                             {
-                                elproyecto += exce2 + ' millones excedidos. ¿Quieres saber alguna otra pregunta?';
+                                elproyecto += exce2 + ' millones excedidos. ' + saberAlgoMas;
                             }
                         }
                         
@@ -393,6 +393,9 @@
         }
     };
 
+    // Variables 
+    const saberAlgoMas = '¿Quieres saber algo más?';
+    
     // The SkillBuilder acts as the entry point for your skill, routing all request and response
     // payloads to the handlers above. Make sure any new handlers or interceptors you've
     // defined are included below. The order matters - they're processed top to bottom.
