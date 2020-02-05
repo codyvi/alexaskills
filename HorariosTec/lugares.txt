@@ -1,0 +1,46 @@
+Servicios:
+	Punto Azul
+	BiblioTEC
+	Gym
+	Cima impresiones
+	BBVA
+	Santander
+	Entrada/Salida del Tec
+	Taquilla Auditorio Luis Elizondo
+	LocaTec
+	TecStore
+	Estacionamientos
+	Preguntar por páginas
+		Reservar salones*
+		SS
+		Mitec
+	Donde puedo comprar boletos de expreso tec
+	donde sale el circuito tec
+	Donde hay cajeros
+	Estadio Borregos
+		TecStore
+		Taquilla
+	Programas internacionales	
+	Punto Blanco
+	Life
+	CVC
+
+Alimentación:
+	Cafeteria Centrales
+		Sr. Latino
+		Papa Jones
+		Subway
+		Gorditas Doña Tota
+		Jhonny Rockets
+		Chilaquiles Tec
+		Las ensaladas
+		...
+	Cafeteria Jubileo
+	Starbucks
+		BiblioTEC
+		CIAP
+		Centro Estudiantil 
+	Tim Hortons
+	Oxxo 
+		Centrales
+		Aulas IV
