@@ -10,7 +10,8 @@
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
         },
         handle(handlerInput) {
-            const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para ver tu información sobre el presupuesto.';
+            //const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para ver tu información sobre el presupuesto.';
+            const speakOutput = 'Bienvenido a tus gastos de viaje. Di tu nombre para conocer tu información sobre el presupuesto.';
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .reprompt(speakOutput)
@@ -27,7 +28,6 @@
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
         
             let elproyecto;
-            //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
             if(nombreQueRecibo === 'David' || nombreQueRecibo === 'Salvador')
             {
@@ -94,70 +94,81 @@
                     }
                 }
 
-                else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?' || preguntaQueRecibo === '¿Cómo voy comparado con mi plan?')
+                else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cómo voy respecto al plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?' || preguntaQueRecibo === '¿Cómo voy comparado con mi plan?')
                 {
-                    elproyecto = `Comparado con tu plan, vas `;
+                    elproyecto = `Vas `;
                     let exce = await API.findvarvsplan2019(name);
+                    let porcentaje = ( (await API.findgastosjd19(name) / (await API.findplanjd19(name))-1)*100).toFixed(1);  // Correción AA
+                    //let porcentaje = ((await API.findgastosjd19(name) / await API.findplanjd19(name))*10).toFixed(1);  Porcentajes Luis 
                     if(exce > 0)
                     {
+                        elproyecto += porcentaje + '% excedido, el equivalente a '
                         if(exce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' pesos excedidos. ' + saberAlgoMas;
+                            elproyecto += exce + ' pesos. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos excedidos. ' + saberAlgoMas; 
+                            elproyecto += exce + ' millones de pesos. ' + saberAlgoMas; 
                         }
                         
                     }
 
                     else
                     {
+                        elproyecto += porcentaje + '% por debajo del plan, el equivalente a '
                         let newexce = Math.abs(exce);
                         if(newexce < 1)
                         {
-                            exce = exce*1000000;
-                            elproyecto += exce + '  pesos por debajo de tu plan. ' + saberAlgoMas;
+                            exce = Math.abs(exce*1000000);
+                            elproyecto += exce + '  pesos. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos por debajo de tu plan. ' + saberAlgoMas;
+                            exce = Math.abs(exce);
+                            elproyecto += exce + ' millones de pesos. ' + saberAlgoMas;
                         }
                         
                     }
                     
                 }
 
-                else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
+                else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === '¿Como voy contra el año anterior?' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
                 {
-                    elproyecto = `En comparación, en este periodo has gastado `;
+                    let porcentaje = (((await API.findgastosjd19(name) / await API.findgastosjd18(name))-1)*100).toFixed(1); // Correción AA
+                    // let porcentaje = ((await API.findgastosjd19(name) / await API.findgastosjd18(name))*10).toFixed(1);  // Porcenajes Luis
                     let exce = await API.findvarvsplan2018(name);
                     if(exce > 0)
                     {
+                        elproyecto = `En comparación, en este periodo has gastado `;
+                        elproyecto += porcentaje + '% más que el año anterior, que equivale a '
                         if(exce < 1)
                         {
                             exce = exce*1000000;
-                            elproyecto += exce + ' pesos más que el año anterior. ' + saberAlgoMas;
+                            elproyecto += exce + ' pesos. ' + saberAlgoMas;
                         }
                         else
                         {
-                            elproyecto += exce + ' millones de pesos más que el año anterior. ' + saberAlgoMas; 
+                            elproyecto += exce + ' millones de pesos. ' + saberAlgoMas; 
                         }
                     }
 
                     else
                     {
+                        elproyecto = `Tienes una eficiencia de `;
+                        elproyecto += porcentaje + '%, que equivale a '
                         let newexce = Math.abs(exce);
                         if(newexce < 1)
                         {
-                            exce = exce*1000000;
-                            elproyecto += exce + ' pesos menos que el año anterior. ' + saberAlgoMas;
+                            exce = Math.abs(exce*1000000);
+                            elproyecto += exce + ' pesos. ' + saberAlgoMas;
                         }
 
                         else
                         {
-                            elproyecto += exce + ' millones menos que el año anterior. ' + saberAlgoMas;
+                            exce = Math.abs(exce);
+                            elproyecto += exce + ' millones de pesos. ' + saberAlgoMas;
                         }
                     }
                 }
@@ -384,7 +395,7 @@
         },
         handle(handlerInput, error) {
             console.log(`~~~~ Error handled: ${error.stack}`);
-            const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+            const speakOutput = `Lo siento, tuve problemas para entenderte, intenta preguntando de nuevo`;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
