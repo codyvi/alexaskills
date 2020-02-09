@@ -8,7 +8,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Bienvenido a Horarios TEC. Puedes preguntarme cual es el horario, a que hora cierra o abre puntos de interes dentro del campus monterrey';
+        const speakOutput = 'Bienvenido a Horarios TEC. Puedes preguntarme cual es el horario, a que hora cierran o abren puntos de interes dentro del campus monterrey';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -21,49 +21,66 @@ const horarioIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'horario';
     },
-    handle(handlerInput) {
-        // const answerSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
-        const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.lugares.resolutions.resolutionsPerAuthority[0].values[0].value.id);
+    async handle(handlerInput) {
+        const nameSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares'); //Esta va ser usada para obtener los datos de la base de datos
+
+        const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.lugares.resolutions.resolutionsPerAuthority[0].values[0].value.id); //El id esta siendo usado para comparar
+        
         let speakOutput = '';
+
         if (answerSlot === 'idTecStore'){
-            speakOutput = 'Tec store tiene un horario de Lunes a Viernes de 8  a 1  y 2:30  5:30.  su telefono es 81 1599 8634 y la página para comprar el línea es store punto tec punto mx';
-        }
+             speakOutput = 'Tec store tiene un horario de Lunes a Viernes de 8  a 1  y 2:30  5:30.  su telefono es 81 1599 8634 y la página para comprar el línea es store punto tec punto mx';
+         }
+        
         else if (answerSlot === 'idCafeteria') {
             speakOutput = 'Los horarios de cafeterias y restaurantes varian, por ejemplo, Centrales de 7:30 a 7 de la tarde. Jubileo de 7:00 a 5:30 y Starbucks de biblioteca de 8:30 a 10:00 de la noche';
+         }
+        
+         else if (answerSlot === 'idBiblioTec') {
+             speakOutput = 'Biblio TEC, permanece abierta las 24 horas los 7 dias de la semana.';
         }
-        else if (answerSlot === 'idBiblioTec') {
-            speakOutput = 'Biblio TEC, permanece abierta las 24 horas los 7 dias de la semana.';
+        
+        else if (answerSlot === 'idPuntoAzul') {
+            speakOutput = 'Punto Azul abre';
+        
         }
-        // else if (answerSlot === 'idPuntoAzul') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idGym') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idCIMA') {
-        //     speakOutput = '';
-        // }
+        
+        else if (answerSlot === 'idGym') {
+            speakOutput = 'El gimnasio abre';
+         }
+        
+        else if (answerSlot === 'idCIMA') {
+            speakOutput = 'Cima abre ';
+        
+        }
+
         else if (answerSlot === 'idLocatec') {
+        
             speakOutput = 'Entre semana, Locatec abre a las 8 de la mañana y cierra a las 8 de la noche. Los sábados abren de 8 de la mañana a 1 de la tarde.';
         }
+        
         else if (answerSlot === 'idTimHortons') {
             speakOutput = 'El horario de Tim Hortons es de 6 de la mañana a 10 de la noche de lunes a viernes. El sábado abre de 9 de la mañana a 6 de la tarde y el domingo abre de 11 de la mañana a 9 de la noche.';
         }        
-        // else if (answerSlot === 'idOxxo') {
-        //     speakOutput = '';
-        // }        
-        else if (answerSlot === 'idPanem') {
+         else if (answerSlot === 'idOxxo') {
+           speakOutput = '';
+       }        
+       
+       else if (answerSlot === 'idPanem') {
             speakOutput = 'Panem abre a las 7:30 de la mañana y cierra a las 9:30 de la noche a excepción del sábado, que cierran a las 5:00 de la tarde. Los domingos no abren.';
         }
+        
         else if (answerSlot === 'idBBVA') {
-            speakOutput = 'El banco BBVA abre de 8:30 de la mañana a 5 de la tarde. No abre en sábado y domingo.';
+             speakOutput = 'El banco BBVA abre de 8:30 de la mañana a 5 de la tarde. No abre en sábado y domingo.';
+         }
+        
+        else if (answerSlot === 'idEnfermeria') {
+           speakOutput = '';
         }
-        // else if (answerSlot === 'idEnfermeria') {
-        //     speakOutput = '';
-        // }
-        else if (answerSlot === 'idSantander') {
-            speakOutput = 'Santander se encuentra abierto de 9 de la mañana a 4 de la tarde. No abre en sábado y domingo.';
-        }
+
+         else if (answerSlot === 'idSantander') {
+             speakOutput = 'Santander se encuentra abierto de 9 de la mañana a 4 de la tarde. No abre en sábado y domingo.';
+         }
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -78,7 +95,8 @@ const aperturaIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'apertura';
     },
     handle(handlerInput) {
-        // const answerSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
+        const nameSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
+
         const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.lugares.resolutions.resolutionsPerAuthority[0].values[0].value.id);
         let speakOutput = '';
         if (answerSlot === 'idTecStore'){
@@ -90,33 +108,44 @@ const aperturaIntentHandler = {
         else if (answerSlot === 'idBiblioTec') {
             speakOutput = 'Biblio TEC, permanece abierta las 24 horas los 7 dias de la semana';
         }
-        // else if (answerSlot === 'idPuntoAzul') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idGym') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idCIMA') {
-        //     speakOutput = '';
-        // }
+
+        else if (answerSlot === 'idPuntoAzul') {
+            speakOutput = '';
+        }
+
+        else if (answerSlot === 'idGym') {
+           speakOutput = '';
+        }
+       
+        else if (answerSlot === 'idCIMA') {
+        speakOutput = '';
+
+        }
+        
         else if (answerSlot === 'idLocatec') {
             speakOutput = 'Locatec abre a las 8 de la mañana de lunes a sábado.';
         }
+
         else if (answerSlot === 'idTimHortons') {
             speakOutput = 'Entre semana, Tim Hortons abre a las 6 de la mañana. El sábado abre a las de 9 de la mañana y el domingo abre de 11 de la mañana.';
         }        
-        // else if (answerSlot === 'idOxxo') {
-        //     speakOutput = '';
-        // }        
+        
+        else if (answerSlot === 'idOxxo') {
+            speakOutput = '';
+        }  
+
         else if (answerSlot === 'idPanem') {
             speakOutput = 'Panem abre a las 7:30 de la mañana de lunes a sábado. Los domingos no abren.';
-        }   
+        }  
+
         else if (answerSlot === 'idBBVA') {
             speakOutput = 'El banco BBVA abre a las 8:30 de la mañana. No abre en sábado y domingo.';
         }
-        // else if (answerSlot === 'idEnfermeria') {
-        //     speakOutput = '';
-        // }
+
+       else if (answerSlot === 'idEnfermeria') {
+          speakOutput = '';
+       }
+
         else if (answerSlot === 'idSantander') {
             speakOutput = 'Santander abre 9 de la mañana. No abre en sábado y domingo.';
         }
@@ -134,7 +163,7 @@ const cierreIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'cierre';
     },
     handle(handlerInput) {
-        // const answerSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
+        const nameSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
         const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.lugares.resolutions.resolutionsPerAuthority[0].values[0].value.id);
         let speakOutput = '';
         if (answerSlot === 'idTecStore'){
@@ -145,16 +174,19 @@ const cierreIntentHandler = {
         }
         else if (answerSlot === 'idBiblioTec') {
             speakOutput = 'Biblio TEC, permanece abierta las 24 horas los 7 dias de la semana';
-        }        
-        // else if (answerSlot === 'idPuntoAzul') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idGym') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idCIMA') {
-        //     speakOutput = '';
-        // }
+        }    
+
+     else if (answerSlot === 'idPuntoAzul') {
+          speakOutput = '';
+        }
+
+      else if (answerSlot === 'idGym') {
+             speakOutput = '';
+         }
+
+        else if (answerSlot === 'idCIMA') {
+       speakOutput = '';
+        }
         else if (answerSlot === 'idLocatec') {
             speakOutput = 'Locatec cierra a las 8 de la noche de lunes a viernes. Los sábados cierran a l 1 de la tarde.';
         }
@@ -189,7 +221,7 @@ const dondePuedoIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'dondePuedo';
     },
     handle(handlerInput) {
-        // const answerSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'acciones');
+        const nameSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'acciones');
         const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.acciones.resolutions.resolutionsPerAuthority[0].values[0].value.id);
         let speakOutput = '';
         if (answerSlot === 'idImprimir'){ 
@@ -210,9 +242,9 @@ const dondePuedoIntentHandler = {
         else if (answerSlot === 'idCoffee'){
             speakOutput = 'Puedes encontrar café en distintos puntos dentro del campus, los más comunes son Starbucks, Tim Hortons y Panem.';
         }
-        // else if (answerSlot === 'idEstacionarse'){
-        //     speakOutput = ''
-        // }
+        else if (answerSlot === 'idEstacionarse'){
+            speakOutput = ''
+        }
         else if (answerSlot === 'idChecarme') {
             speakOutput = 'Si te sientes mal, puedes ir a checarte a la enfermería, ubicada entre la cafeteria Centrales y Panem.';
         }
@@ -233,7 +265,7 @@ const dondeQuedaIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'dondeQueda';
     },
     handle(handlerInput) {
-        // const answerSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
+        const nameSlot = Alexa.getSlotValue(handlerInput.requestEnvelope, 'lugares');
         const answerSlot = (handlerInput.requestEnvelope.request.intent.slots.lugares.resolutions.resolutionsPerAuthority[0].values[0].value.id);
         let speakOutput = '';
         if (answerSlot === 'idPuntoAzul'){
@@ -251,12 +283,12 @@ const dondeQuedaIntentHandler = {
         else if (answerSlot === 'idLocatec'){
             speakOutput = 'Locatec se encuentra en el primer piso de aulas 1.'
         }
-        // else if (answerSlot === 'idCanchasEscamilla'){
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idCIMA'){
-        //     speakOutput = '';
-        // }
+        else if (answerSlot === 'idCanchasEscamilla'){
+            speakOutput = '';
+        }
+        else if (answerSlot === 'idCIMA'){
+             speakOutput = '';
+        }
         else if (answerSlot === 'idTimHortons') {
             speakOutput = 'Tim Hortons se encuentra en el primer piso de BiblioTec.';
         }        
@@ -269,12 +301,12 @@ const dondeQuedaIntentHandler = {
         else if (answerSlot === 'idEnfermeria') {
             speakOutput = 'La enfermería se encuentra entre la cafeteria Centrales y Panem.';
         }
-        // else if (answerSlot === 'idSantander') {
-        //     speakOutput = '';
-        // }
-        // else if (answerSlot === 'idBBVA') {
-        //     speakOutput = '';
-        // }
+        else if (answerSlot === 'idSantander') {
+           speakOutput = '';
+        }
+        else if (answerSlot === 'idBBVA') {
+            speakOutput = '';
+        }
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('¿Te puedo ayudar con otra cosa?')
