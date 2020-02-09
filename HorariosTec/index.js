@@ -63,7 +63,7 @@ const horarioIntentHandler = {
             speakOutput = 'El horario de Tim Hortons es de 6 de la mañana a 10 de la noche de lunes a viernes. El sábado abre de 9 de la mañana a 6 de la tarde y el domingo abre de 11 de la mañana a 9 de la noche.';
         }        
          else if (answerSlot === 'idOxxo') {
-           speakOutput = '';
+           speakOutput = 'El oxxo abre';
        }        
        
        else if (answerSlot === 'idPanem') {
@@ -110,15 +110,15 @@ const aperturaIntentHandler = {
         }
 
         else if (answerSlot === 'idPuntoAzul') {
-            speakOutput = '';
+            speakOutput = 'Punto Azul abre';
         }
 
         else if (answerSlot === 'idGym') {
-           speakOutput = '';
+           speakOutput = 'El gimnasio abre ';
         }
        
         else if (answerSlot === 'idCIMA') {
-        speakOutput = '';
+        speakOutput = 'Cima abre ';
 
         }
         
@@ -131,7 +131,7 @@ const aperturaIntentHandler = {
         }        
         
         else if (answerSlot === 'idOxxo') {
-            speakOutput = '';
+            speakOutput = 'El oxxo abre';
         }  
 
         else if (answerSlot === 'idPanem') {
@@ -143,7 +143,7 @@ const aperturaIntentHandler = {
         }
 
        else if (answerSlot === 'idEnfermeria') {
-          speakOutput = '';
+          speakOutput = 'La enfermeria abre';
        }
 
         else if (answerSlot === 'idSantander') {
@@ -177,15 +177,15 @@ const cierreIntentHandler = {
         }    
 
      else if (answerSlot === 'idPuntoAzul') {
-          speakOutput = '';
+          speakOutput = 'Punto azul cierra';
         }
 
       else if (answerSlot === 'idGym') {
-             speakOutput = '';
+             speakOutput = 'El gimnasio cierra ';
          }
 
         else if (answerSlot === 'idCIMA') {
-       speakOutput = '';
+       speakOutput = 'Cima cierra ';
         }
         else if (answerSlot === 'idLocatec') {
             speakOutput = 'Locatec cierra a las 8 de la noche de lunes a viernes. Los sábados cierran a l 1 de la tarde.';
@@ -193,18 +193,18 @@ const cierreIntentHandler = {
         else if (answerSlot === 'idTimHortons') {
             speakOutput = 'Entre semana, Tim Hortons cierra a las 10 de la noche. El sábado cierra a las 6 de la tarde y el domingo cierra a las 9 de la noche.';
         }        
-        // else if (answerSlot === 'idOxxo') {
-        //     speakOutput = '';
-        // }        
+         else if (answerSlot === 'idOxxo') {
+             speakOutput = 'El oxxo cierra';
+        }        
         else if (answerSlot === 'idPanem') {
             speakOutput = 'Panem cierra a las 9:30 de la noche. Los sábados cierran a las 5:00 de la tarde y los domingos no abren.';
         }
         else if (answerSlot === 'idBBVA') {
             speakOutput = 'El banco BBVA cierra a las 5 de la tarde. No abre en sábado y domingo.';
         }
-        // else if (answerSlot === 'idEnfermeria') {
-        //     speakOutput = '';
-        // }
+        else if (answerSlot === 'idEnfermeria') {
+         speakOutput = 'La enfermeria cierra';
+     }
         else if (answerSlot === 'idSantander') {
             speakOutput = 'Santander cierra a las 4 de la tarde. No abre en sábado y domingo.';
         }
@@ -243,7 +243,7 @@ const dondePuedoIntentHandler = {
             speakOutput = 'Puedes encontrar café en distintos puntos dentro del campus, los más comunes son Starbucks, Tim Hortons y Panem.';
         }
         else if (answerSlot === 'idEstacionarse'){
-            speakOutput = ''
+            speakOutput = 'Los estudiantes se pueden estacionar en el E1, E2, E3 y Pabellon Tec si pagaron, si no a partir de las 6 pueden entrar a los estacionamientos dentro del Tec. En Fines de Semana a cualquier hora.'
         }
         else if (answerSlot === 'idChecarme') {
             speakOutput = 'Si te sientes mal, puedes ir a checarte a la enfermería, ubicada entre la cafeteria Centrales y Panem.';
@@ -284,10 +284,10 @@ const dondeQuedaIntentHandler = {
             speakOutput = 'Locatec se encuentra en el primer piso de aulas 1.'
         }
         else if (answerSlot === 'idCanchasEscamilla'){
-            speakOutput = '';
+            speakOutput = 'El Campo Escamilla se encuentra afuera del tec, sobre Luiz Elizondo pasando el Estadio de los Borregos. ';
         }
         else if (answerSlot === 'idCIMA'){
-             speakOutput = '';
+             speakOutput = 'CIMA se encuentra debajo de Centrales.';
         }
         else if (answerSlot === 'idTimHortons') {
             speakOutput = 'Tim Hortons se encuentra en el primer piso de BiblioTec.';
@@ -302,10 +302,10 @@ const dondeQuedaIntentHandler = {
             speakOutput = 'La enfermería se encuentra entre la cafeteria Centrales y Panem.';
         }
         else if (answerSlot === 'idSantander') {
-           speakOutput = '';
+           speakOutput = 'Santander se encuentra entre aulas 1 y centro estudiantil.';
         }
         else if (answerSlot === 'idBBVA') {
-            speakOutput = '';
+            speakOutput = 'BBVA se encuentra entre aulas 1 y centro estudiantil';
         }
         return handlerInput.responseBuilder
             .speak(speakOutput)
