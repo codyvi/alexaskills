@@ -1,8 +1,17 @@
 {
     "nombre": "David",
-    "nivel": null,
-    "tiempoInicio": null,
-    "tiempoFinal": null,
+    "nivel": 0,
+    "tiempoInicio": 0,
+    "tiempoFinal": 0,
+    "tiempoAcumulado" : 0,
+    "diasAcumulados" : 0
+}
+
+{
+    "nombre": "Anto",
+    "nivel": 0,
+    "tiempoInicio": 0,
+    "tiempoFinal": 0,
     "tiempoAcumulado" : 0,
     "diasAcumulados" : 0
 }
