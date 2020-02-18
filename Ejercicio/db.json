@@ -1,0 +1,8 @@
+{
+    "nombre": "David",
+    "nivel": null,
+    "tiempoInicio": null,
+    "tiempoFinal": null,
+    "tiempoAcumulado" : 0,
+    "diasAcumulados" : 0
+}
