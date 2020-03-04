@@ -57,7 +57,7 @@ const InfoIntentHandler = {
         speakOutput += '¿Te gustaría realizar la prueba?'
         var d = new Date();
         var minutes = d.getMinutes();
-        speakOutput += ` Han pasado ${minutes}`;
+        API.UpdateHora(name, minutes);
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('add a reprompt if you want to keep the session open for the user to respond')
