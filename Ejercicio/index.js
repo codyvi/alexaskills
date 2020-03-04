@@ -55,6 +55,9 @@ const InfoIntentHandler = {
         let name = prevSession.Nombre;
         var speakOutput = `Claro ${name}, el entramiento va determinar tu nivel dependiendo de cuanto tiempo vayas a estar en el, para iniciarlo hay que salir de la skill y para acabar hay que volver a entrar`
         speakOutput += '¿Te gustaría realizar la prueba?'
+        var d = new Date();
+        var minutes = d.getMinutes();
+        speakOutput += ` Han pasado ${minutes}`;
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('add a reprompt if you want to keep the session open for the user to respond')
@@ -82,7 +85,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Nos vemos!';
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
