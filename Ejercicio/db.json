@@ -15,3 +15,11 @@
     "tiempoAcumulado" : 0,
     "diasAcumulados" : 0
 }
+{
+    "nombre": "Prueba",
+    "nivel": 2,
+    "tiempoInicio": 0,
+    "tiempoFinal": 0,
+    "tiempoAcumulado" : 0,
+    "diasAcumulados" : 0
+}
