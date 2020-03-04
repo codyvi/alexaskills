@@ -41,7 +41,7 @@ const NombreIntentHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt('Recuerda que puedes obtener más información diciendo "Quiero más información"')
             .getResponse();
     }
 };
@@ -53,12 +53,13 @@ const InfoIntentHandler = {
     async handle(handlerInput) {
         const prevSession = handlerInput.attributesManager.getSessionAttributes();
         let name = prevSession.Nombre;
-        var speakOutput = name;
+        var speakOutput = 'El nombre es ';
+        speakOutput += name;
 
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
 };
