@@ -24,14 +24,16 @@ const NombreIntentHandler = {
     },
     async handle(handlerInput) {
         const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
-        var speakOutput = ' jaja no entro';
+        var speakOutput = '';
         let Nivel = await API.findnivel(nombreQueRecibo);
-        speakOutput = nombreQueRecibo;
-        speakOutput = Nivel;
         if(Nivel === 0)
         {
             
             speakOutput = 'Veo que no tienes nivel, quieres empezar a entrenar?'
+        }
+
+        else{
+            speakOutput = 'Aqui va ir el menú'
         }
 
         return handlerInput.responseBuilder
