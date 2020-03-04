@@ -2,14 +2,14 @@ const fetch = require('node-fetch');
 
 module.exports.findnivel = async function findnivel(slotUsuario) {
     let data = await getVP();
-    let nivel = '';
+    let Pnivel = '';
         for ( let i = 0; i < data.length; i ++ ){
             if (data[i].vp === slotUsuario) {
-                nivel = data[i].nivel;
+                Pnivel = data[i].nivel;
             }
         }
-  console.log(nivel);
-  return nivel;
+  console.log(Pnivel);
+  return Pnivel;
 }
 
 
