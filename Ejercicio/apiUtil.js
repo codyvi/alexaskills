@@ -12,6 +12,10 @@ module.exports.findnivel = async function findnivel(slotUsuario) {
   return Pnivel;
 }
 
+module.exports.UpdateHora = async function UpdateHora(slotUsuario, hora){
+  
+}
+
 
 async function getVP() {
   let url =

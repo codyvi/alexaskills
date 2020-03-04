@@ -10,7 +10,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Hola, bienvenido, empieza diciendome tu nombre ';
+        const speakOutput = 'Hola, bienvenido, empieza diciendome tu nombre '; 
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -29,12 +29,32 @@ const NombreIntentHandler = {
         if(Nivel === 0)
         {
             
-            speakOutput = 'Veo que no tienes nivel, quieres empezar a entrenar?'
+            speakOutput = `Hola ${nombreQueRecibo}! Esta sera nuestra primera sesión, ¿Quieres empezar a entrenar, o te gustaría saber más información?`;
         }
 
         else{
-            speakOutput = 'Aqui va ir el menú'
+            speakOutput =  `Hola ${nombreQueRecibo}, tu nivel es ${Nivel}, quieres iniciar tu rutina diaria, o te gustaría saber como te fue en la semana`;
         }
+        const prevSession = handlerInput.attributesManager.getSessionAttributes();
+        prevSession["Nombre"] = nombreQueRecibo;
+        handlerInput.attributesManager.setSessionAttributes(prevSession);
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+const InfoIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'MasInfo';
+    },
+    async handle(handlerInput) {
+        const prevSession = handlerInput.attributesManager.getSessionAttributes();
+        let name = prevSession.Nombre;
+        var speakOutput = name;
+
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -123,6 +143,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         NombreIntentHandler,
+        InfoIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         SessionEndedRequestHandler,
