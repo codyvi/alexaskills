@@ -53,10 +53,8 @@ const InfoIntentHandler = {
     async handle(handlerInput) {
         const prevSession = handlerInput.attributesManager.getSessionAttributes();
         let name = prevSession.Nombre;
-        var speakOutput = 'El nombre es ';
-        speakOutput += name;
-
-
+        var speakOutput = `Claro ${name}, el entramiento va determinar tu nivel dependiendo de cuanto tiempo vayas a estar en el, para iniciarlo hay que salir de la skill y para acabar hay que volver a entrar`
+        speakOutput += '¿Te gustaría realizar la prueba?'
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt('add a reprompt if you want to keep the session open for the user to respond')
