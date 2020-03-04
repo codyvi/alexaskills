@@ -4,7 +4,7 @@ module.exports.findnivel = async function findnivel(slotUsuario) {
     let data = await getVP();
     let Pnivel = '';
         for ( let i = 0; i < data.length; i ++ ){
-            if (data[i].vp === slotUsuario) {
+            if (data[i].nombre === slotUsuario) {
                 Pnivel = data[i].nivel;
             }
         }
