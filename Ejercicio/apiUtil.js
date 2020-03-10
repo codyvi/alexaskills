@@ -12,6 +12,18 @@ module.exports.findnivel = async function findnivel(slotUsuario) {
   return Pnivel;
 }
 
+module.exports.findHoraInicial = async function findHoraInicial(slotUsuario){
+	let data = await getVP();
+    let Pini = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].nombre === slotUsuario) {
+                Pini = data[i].tiempoInicio;
+            }
+        }
+  console.log(Pini);
+  return Pini;
+}
+
 module.exports.UpdateHora = async function UpdateHora(slotUsuario, hora){
   var id  = slotUsuario;
 		var tIni = hora;

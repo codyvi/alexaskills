@@ -26,9 +26,31 @@
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             var speakOutput = '';
             let Nivel = await API.findnivel(nombreQueRecibo);
+            let horIni = await API.findHoraInicial(nombreQueRecibo);
+            if(horIni !== 0)
+            {
+                var nivelNuevo = 0;
+                var d = new Date();
+                var minutes = d.getMinutes();
+                API.UpdateHoraFinal(name, minutes);
+                var tmp = minutes - horIni;
+                if(tmp < 1)
+                {
+                    nivelNuevo = 1;
+                }
+
+                else if( tmp > 1 || tmp < 2){
+                    nivelNuevo = 2;
+                }
+
+                else if( tmp > 2 ){
+                    nivelNuevo = 3;
+                }
+            }
+    
+
             if(Nivel === 0)
             {
-                
                 speakOutput = `Hola ${nombreQueRecibo}! Esta sera nuestra primera sesión, ¿Quieres empezar a entrenar, o te gustaría saber más información?`;
             }
 
