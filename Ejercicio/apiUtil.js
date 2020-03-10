@@ -94,7 +94,7 @@ module.exports.UpdateNivel = async function UpdateNivel(slotUsuario, nivel){
 		var id  = slotUsuario;
 		var nIvel = nivel;
 
-		let url2 = '/api/EjercicioAn3'
+		let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn2'
 		let settings2 = {
 			method: 'POST',
 			body: JSON.stringify({

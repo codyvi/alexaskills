@@ -47,7 +47,7 @@
                     nivelNuevo = 3;
                 }
 
-                API.UpdateNivel(nombreQueRecibo, Nivel)
+                API.UpdateNivel(nombreQueRecibo, nivelNuevo)
             }
 
             let Nivel = await API.findnivel(nombreQueRecibo);
