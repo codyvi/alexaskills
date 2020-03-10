@@ -25,9 +25,9 @@
         async handle(handlerInput) {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             var speakOutput = '';
-            
+            let niveltmp = await API.findnivel(nombreQueRecibo);
             let horIni = await API.findHoraInicial(nombreQueRecibo);
-            if(horIni !== 0)
+            if(horIni !== 0 && niveltmp === 0)
             {
                 var nivelNuevo = 0;
                 var d = new Date();
