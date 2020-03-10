@@ -98,11 +98,18 @@
         },
         async handle(handlerInput) {
             // Any cleanup logic goes here.
+
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            var d = new Date();
-            var minutes = d.getMinutes();
-            API.UpdateHora(name, minutes);
+            let Nivel = await API.findnivel(name);
+            
+            if(Nivel === 0){
+                var d = new Date();
+                var minutes = d.getMinutes();
+                API.UpdateHora(name, minutes);
+            }
+            
+            
             return handlerInput.responseBuilder.getResponse();
         }
     };
