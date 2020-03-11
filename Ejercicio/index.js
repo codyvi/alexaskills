@@ -25,37 +25,12 @@
         async handle(handlerInput) {
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             var speakOutput = '';
-            let niveltmp = await API.findnivel(nombreQueRecibo);
-            let horIni = await API.findHoraInicial(nombreQueRecibo);
-            if(horIni !== 0 && niveltmp === 0)
-            {
-                var nivelNuevo = 0;
-                var d = new Date();
-                var minutes = d.getMinutes();
-                API.UpdateHoraFinal(nombreQueRecibo, minutes);
-                var tmp = minutes - horIni;
-                if(tmp < 1)
-                {
-                    nivelNuevo = 1;
-                }
-
-                else if( tmp > 1 || tmp < 2){
-                    nivelNuevo = 2;
-                }
-
-                else if( tmp > 2 ){
-                    nivelNuevo = 3;
-                }
-
-                API.UpdateNivel(nombreQueRecibo, nivelNuevo)
-            }
-
             let Nivel = await API.findnivel(nombreQueRecibo);
     
 
             if(Nivel === 0)
             {
-                speakOutput = `Hola ${nombreQueRecibo}! Esta sera nuestra primera sesión, ¿Quieres empezar a entrenar, o te gustaría saber más información?`;
+                speakOutput = `Hola ${nombreQueRecibo}! Esta sera nuestra primera sesión, ¿Quieres conocer tu nivel, o te gustaría saber más información?`;
             }
 
             else{
@@ -79,10 +54,27 @@
         async handle(handlerInput) {
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            var speakOutput = `Claro ${name}, el entramiento va determinar tu nivel dependiendo de cuanto tiempo vayas a estar en el, para iniciarlo hay que salir de la skill y para acabar hay que volver a entrar`
+            var speakOutput = `Claro ${name}, al conocer tu nivel se te harán dos preguntas para determinar tu condición física y motivación`
             speakOutput += '¿Te gustaría realizar la prueba?'
-            var d = new Date();
-            var minutes = d.getMinutes();
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+
+    const IniciarEntrenaminetoHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'IniciarRutina';
+        },
+        async handle(handlerInput) {
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            var audioFile = '<audio src"https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
+            var speakOutput = `Claro ${name}, ${audioFile}`;
+  
             // API.UpdateHora(name, minutes);
 
             return handlerInput.responseBuilder
@@ -91,6 +83,53 @@
                 .getResponse();
         }
     };
+    const IniciarTestHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'IniciarTest';
+        },
+        async handle(handlerInput) {
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            var speakOutput = `Claro ${name}, ¿Cuántas veces a la semana haras actividad física?`;
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+    const NivelIntentHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'NivelIntent';
+        },
+        async handle(handlerInput) {
+            const decidirNivel = (handlerInput.requestEnvelope.request.intent.slots.Respuestas.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            if(decidirNivel === 0){
+                API.UpdateNivel(name, 1);
+            }
+
+            else if(decidirNivel > 0 && decidirNivel < 3){
+                API.UpdateNivel(name, 2)
+            }
+
+            else if(decidirNivel > 3){
+                API.UpdateNivel(name,3)
+            }
+
+            var speakOutput = `Perfecto ${name}, Tu nivel ha sido determinado, para que se guarde di salir y vuelve a inicar la skill para conocerlo.`;
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+
+
     const HelpIntentHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -124,18 +163,7 @@
         },
         async handle(handlerInput) {
             // Any cleanup logic goes here.
-
-            const prevSession = handlerInput.attributesManager.getSessionAttributes();
-            let name = prevSession.Nombre;
-            let Nivel = await API.findnivel(name);
-            
-            if(Nivel === 0){
-                var d = new Date();
-                var minutes = d.getMinutes();
-                API.UpdateHora(name, minutes);
-            }
-            
-            
+    
             return handlerInput.responseBuilder.getResponse();
         }
     };
@@ -185,6 +213,8 @@
             LaunchRequestHandler,
             NombreIntentHandler,
             InfoIntentHandler,
+            IniciarTestHandler, 
+            NivelIntentHandler,
             HelpIntentHandler,
             CancelAndStopIntentHandler,
             SessionEndedRequestHandler,
