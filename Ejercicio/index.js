@@ -63,7 +63,6 @@
                 .getResponse();
         }
     };
-
     const IniciarEntrenaminetoHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -72,10 +71,9 @@
         async handle(handlerInput) {
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            var audioFile = '<audio src"https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
+            var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
             var speakOutput = `Claro ${name}, ${audioFile}`;
-  
-            // API.UpdateHora(name, minutes);
+
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
@@ -213,6 +211,7 @@
             LaunchRequestHandler,
             NombreIntentHandler,
             InfoIntentHandler,
+            IniciarEntrenaminetoHandler,
             IniciarTestHandler, 
             NivelIntentHandler,
             HelpIntentHandler,
