@@ -72,7 +72,7 @@
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
             var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
-            var speakOutput = `Claro ${name}, ${audioFile}`;
+            var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso?`;
 
 
             return handlerInput.responseBuilder
