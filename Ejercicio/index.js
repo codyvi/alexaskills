@@ -72,9 +72,10 @@
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
             var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
-            var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso?`;
+            var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso? `;
 
-            let nivel = API.findnivel(name)
+            let nivel = await API.findnivel(name)
+            speakOutput += nivel;
             var minutos = 0;
             if(nivel === 1)
             {
