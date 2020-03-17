@@ -74,6 +74,25 @@
             var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
             var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso?`;
 
+            let nivel = API.findnivel(name)
+            var minutos = 0;
+            if(nivel === 1)
+            {
+                minutos = 5;
+            }
+
+            else if(nivel === 2)
+            {
+                minutos = 7;
+            }
+            
+            else if(nivel === 3)
+            {
+                minutos = 9;
+            }
+
+            // API.UpdateTiempoAcum(minutos) Funcion para updatear tiempo usado
+            //API.UpdateDiasAcum(1) Funcion para updatear dias
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)

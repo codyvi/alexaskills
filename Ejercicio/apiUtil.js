@@ -91,36 +91,103 @@ module.exports.UpdateHoraFinal = async function UpdateHoraFinal(slotUsuario, hor
 }
 
 module.exports.UpdateNivel = async function UpdateNivel(slotUsuario, nivel){
-		var id  = slotUsuario;
-		var nIvel = nivel;
+	var id  = slotUsuario;
+	var nIvel = nivel;
 
-		let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn3'
-		let settings2 = {
-			method: 'POST',
-			body: JSON.stringify({
-				id: id,
-				nivel: parseInt(nIvel)
-			}),
-			headers: {
-				'Content-Type': 'application/json'
-			},
+	let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn3'
+	let settings2 = {
+		method: 'POST',
+		body: JSON.stringify({
+			id: id,
+			nivel: parseInt(nIvel)
+		}),
+		headers: {
+			'Content-Type': 'application/json'
+		},
+	}
+
+	fetch(url2, settings2)
+	.then( response => {
+		if ( response.ok ){
+			return response.json();
 		}
 
-		fetch(url2, settings2)
-		.then( response => {
-			if ( response.ok ){
-				return response.json();
-			}
+		throw new Error ( response.statusText );
+	})
+	.then( responseJSON => {
 
-			throw new Error ( response.statusText );
-		})
-		.then( responseJSON => {
+		console.log(responseJSON);
+	})
+	.catch( err => {
+		console.log( err );
+	})
+}
 
-			console.log(responseJSON);
-		})
-		.catch( err => {
-			console.log( err );
-		})
+module.exports.UpdateTiempoAcum = async function UpdateTiempoAcum(slotUsuario, tiemAcum){
+		
+	var id  = slotUsuario;
+	var tAcum = tiemAcum;
+
+	let url2 = '/api/EjercicioAn4'
+	let settings2 = {
+		method: 'POST',
+		body: JSON.stringify({
+			id: id,
+			tiempoAcumulado: parseInt(tAcum)
+		}),
+		headers: {
+			'Content-Type': 'application/json'
+		},
+	}
+
+	fetch(url2, settings2)
+	.then( response => {
+		if ( response.ok ){
+			return response.json();
+		}
+
+		throw new Error ( response.statusText );
+	})
+	.then( responseJSON => {
+
+		console.log(responseJSON);
+	})
+	.catch( err => {
+		console.log( err );
+	})
+}
+
+module.exports.UpdateDiasAcum = async function UpdateDiasAcum(slotUsuario, diasAc){
+	var id  = slotUsuario;
+	var dAcum = diasAc;
+
+	let url2 = '/api/EjercicioAn5'
+	let settings2 = {
+		method: 'POST',
+		body: JSON.stringify({
+			id: id,
+			diasAcum: parseInt(dAcum)
+		}),
+		headers: {
+			'Content-Type': 'application/json'
+		},
+	}
+
+	fetch(url2, settings2)
+	.then( response => {
+		if ( response.ok ){
+			return response.json();
+		}
+
+		throw new Error ( response.statusText );
+	})
+	.then( responseJSON => {
+
+		console.log(responseJSON);
+	})
+	.catch( err => {
+		console.log( err );
+	})
 }
 
 
