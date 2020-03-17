@@ -92,8 +92,14 @@
                 minutos = 9;
             }
 
-            API.UpdateTiempoAcum(name, minutos);
-            API.UpdateDiasAcum(name, 1);
+            var currTiem = await API.findTiempoAcum(name);
+            var currDias = await API.findDiasAcum(name);
+
+            currTiem += minutos;
+            currDias += 1;
+
+            API.UpdateTiempoAcum(name, currTiem);
+            API.UpdateDiasAcum(name, currDias);
             
 
             return handlerInput.responseBuilder
@@ -111,6 +117,25 @@
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
             var speakOutput = `Claro ${name}, ¿Cuántas veces a la semana haras actividad física?`;
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+    const DatosHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Datos';
+        },
+        async handle(handlerInput) {
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            var speakOutput = `Hola ${name}, vamos a ver tus datos`;
+            let diasAcum = await API.findDiasAcum(name);
+            let tiemAcum = await API.findTiempoAcum(name);
+            speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum}`;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
@@ -233,6 +258,7 @@
             NombreIntentHandler,
             InfoIntentHandler,
             IniciarEntrenaminetoHandler,
+            DatosHandler,
             IniciarTestHandler, 
             NivelIntentHandler,
             HelpIntentHandler,
