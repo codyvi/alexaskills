@@ -24,6 +24,30 @@ module.exports.findHoraInicial = async function findHoraInicial(slotUsuario){
   return Pini;
 }
 
+module.exports.findTiempoAcum = async function findTiempoAcum(slotUsuario){
+	let data = await getVP();
+	let pTiemAc = '';
+	for(let i = 0; i < data.length; i++){
+		if(data[i].nombre === slotUsuario){
+			pTiemAc = data[i].tiempoAcumulado;
+		}
+	}
+	console.log(pTiemAc);
+	return pTiemAc;
+}
+
+module.exports.findDiasAcum = async function findDiasAcum(slotUsuario){
+	let data = await getVP();
+	let pDiaAcum = '';
+	for(let i = 0; i < data.length; i++){
+		if(data[i].nombre === slotUsuario){
+			pDiaAcum = data[i].diasAcumulados;
+		}
+	}
+	console.log(pDiaAcum);
+	return pDiaAcum;
+}
+
 module.exports.UpdateHora = async function UpdateHora(slotUsuario, hora){
   var id  = slotUsuario;
 		var tIni = hora;

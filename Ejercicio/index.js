@@ -75,7 +75,7 @@
             var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso? `;
 
             let nivel = await API.findnivel(name)
-            speakOutput += nivel;
+            // speakOutput += nivel;
             var minutos = 0;
             if(nivel === 1)
             {
