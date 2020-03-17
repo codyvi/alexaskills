@@ -91,8 +91,9 @@
                 minutos = 9;
             }
 
-            // API.UpdateTiempoAcum(minutos) Funcion para updatear tiempo usado
-            //API.UpdateDiasAcum(1) Funcion para updatear dias
+            API.UpdateTiempoAcum(name, minutos);
+            API.UpdateDiasAcum(name, 1);
+            
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)

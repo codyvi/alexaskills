@@ -128,7 +128,7 @@ module.exports.UpdateTiempoAcum = async function UpdateTiempoAcum(slotUsuario, t
 	var id  = slotUsuario;
 	var tAcum = tiemAcum;
 
-	let url2 = '/api/EjercicioAn4'
+	let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn4'
 	let settings2 = {
 		method: 'POST',
 		body: JSON.stringify({
@@ -161,7 +161,7 @@ module.exports.UpdateDiasAcum = async function UpdateDiasAcum(slotUsuario, diasA
 	var id  = slotUsuario;
 	var dAcum = diasAc;
 
-	let url2 = '/api/EjercicioAn5'
+	let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn5'
 	let settings2 = {
 		method: 'POST',
 		body: JSON.stringify({
