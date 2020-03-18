@@ -74,26 +74,29 @@
             var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+1+.mp3" />';
             var audioFile2 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+2.mp3" />';
             var audioFile3 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+3.mp3" />';
-            var audioFile4 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+4.mp3" />';
-            var audioFile5 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+5.mp3" />';
 
-            var speakOutput = `Claro ${name}, ${audioFile}  ${audioFile2} ${audioFile3} ${audioFile4} ${audioFile5}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
+            
+
+            var speakOutput = '';
 
             let nivel = await API.findnivel(name)
             // speakOutput += nivel;
             var minutos = 0;
             if(nivel === 1)
             {
+                speakOutput = `Claro ${name} iniciando nivel Basico, ${audioFile}  ${audioFile2} ${audioFile3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 5;
             }
 
             else if(nivel === 2)
             {
+                speakOutput = `Claro ${name} iniciando nivel Intermedio, ${audioFile}  ${audioFile2} ${audioFile3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 7;
             }
             
             else if(nivel === 3)
             {
+                speakOutput = `Claro ${name} iniciando nivel Avanzado, ${audioFile}  ${audioFile2} ${audioFile3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 9;
             }
 
