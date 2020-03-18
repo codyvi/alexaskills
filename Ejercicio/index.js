@@ -75,7 +75,14 @@
             var audioFile2 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+2.mp3" />';
             var audioFile3 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+3.mp3" />';
 
-            
+            var audioMedio1 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+medio+1.mp3" />';
+            var audioMedio2 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+medio+1.mp3" />';
+            var audioMedio3 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+medio+1.mp3" />';
+
+            var audioDificil1 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+GaD+1.mp3" />'; 
+            var audioDificil2 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+GaD+2.mp3" />';
+            var audioDificil3 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+GaD+3.mp3" />';
+
 
             var speakOutput = '';
 
@@ -90,13 +97,13 @@
 
             else if(nivel === 2)
             {
-                speakOutput = `Claro ${name} iniciando nivel Intermedio, ${audioFile}  ${audioFile2} ${audioFile3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
+                speakOutput = `Claro ${name} iniciando nivel Intermedio, ${audioMedio1}  ${audioMedio2} ${audioMedio3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 7;
             }
             
             else if(nivel === 3)
             {
-                speakOutput = `Claro ${name} iniciando nivel Avanzado, ${audioFile}  ${audioFile2} ${audioFile3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
+                speakOutput = `Claro ${name} iniciando nivel Avanzado, ${audioDificil1}  ${audioDificil2} ${audioDificil3}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 9;
             }
 
