@@ -138,10 +138,10 @@
             let nivel = await API.findnivel(name);
             speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos`;
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                speakOutput += ` Vas muy bien, quieres subir a nivel 2?`;
+                speakOutput += ` Vas muy bien, sigue así`
             }
             elseif(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
-                speakOutput += ` Vas muy bien, quieres subir a nivel 2?`;
+                speakOutput += ` Vas muy bien, sigue así`;
             }
 
 
