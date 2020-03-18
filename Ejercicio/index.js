@@ -71,8 +71,13 @@
         async handle(handlerInput) {
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/P1.mp3" />';
-            var speakOutput = `Claro ${name}, ${audioFile}, que tal estuvo eso? `;
+            var audioFile = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+1+.mp3" />';
+            var audioFile2 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+2.mp3" />';
+            var audioFile3 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+3.mp3" />';
+            var audioFile4 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+4.mp3" />';
+            var audioFile5 = '<audio src="https://audios-de-alexa.s3.amazonaws.com/Basico+5.mp3" />';
+
+            var speakOutput = `Claro ${name}, ${audioFile}  ${audioFile2} ${audioFile3} ${audioFile4} ${audioFile5}, Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
 
             let nivel = await API.findnivel(name)
             // speakOutput += nivel;
@@ -138,11 +143,13 @@
             let nivel = await API.findnivel(name);
             speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos`;
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                speakOutput += ` Vas muy bien, sigue así`
-            }
-            elseif(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
                 speakOutput += ` Vas muy bien, sigue así`;
             }
+            else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
+                speakOutput += ` Vas muy bien, sigue así`;
+            }
+
+            speakOutput += ' Puedes decir salir para acabar, o puedes empezar a entrenar.'
 
 
             return handlerInput.responseBuilder
