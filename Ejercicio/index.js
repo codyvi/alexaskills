@@ -95,26 +95,57 @@
                 type: "AudioPlayer.Play",
                 playBehavior: "REPLACE_ALL",
                 audioItem: {
-                stream: {     
-                url: `${direccion}`,
-                token: "0",
-                offsetInMilliseconds: 0
+                    stream: {     
+                        url: `${direccion}`,
+                         token: "0",
+                         offsetInMilliseconds: 0
+                        }
                     }
-                }
-        }); 
-                
+                }); 
                 speakOutput = `Claro ${name}, iniciando nivel Basico,. Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 5;
             }
 
             else if(nivel === 2)
             {
+                let direccion = audioMedio1
+                console.log(`${direccion}`);
+                handlerInput.responseBuilder
+                .addDirective({
+                type: "AudioPlayer.Play",
+                playBehavior: "REPLACE_ALL",
+                audioItem: {
+                    stream: {     
+                        url: `${direccion}`,
+                         token: "0",
+                         offsetInMilliseconds: 0
+                        }
+                    }
+                }); 
+
                 speakOutput = `Claro ${name}, iniciando nivel Intermedio, . Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 7;
             }
             
             else if(nivel === 3)
             {
+                let direccion = audioDificil1
+                console.log(`${direccion}`);
+                handlerInput.responseBuilder
+                .addDirective({
+                type: "AudioPlayer.Play",
+                playBehavior: "REPLACE_ALL",
+                audioItem: {
+                    stream: {     
+                        url: `${direccion}`,
+                         token: "0",
+                         offsetInMilliseconds: 0
+                        }
+                    }
+                }); 
+
+
+
                 speakOutput = `Claro ${name}, iniciando nivel Avanzado,  . Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 9;
             }
