@@ -76,7 +76,7 @@
 
             var audioMedio1 = "https://audios-de-alexa.s3.amazonaws.com/VT+medio+GaD.mp33";
 
-
+            //Audio puede ser incorrecto, checar con Rosa
             var audioDificil1 = "https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+GaD+1.mp3";
      
 
@@ -144,8 +144,7 @@
                     }
                 }); 
 
-
-
+                
                 speakOutput = `Claro ${name}, iniciando nivel Avanzado,  . Recuerda que puedes conocer tus datos de la semana diciendo ¿Como me fue en la semana?`;
                 minutos = 9;
             }
