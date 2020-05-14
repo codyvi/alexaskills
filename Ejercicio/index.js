@@ -76,7 +76,7 @@
 
             var audioMedio1 = "https://audios-de-alexa.s3.amazonaws.com/VT+medio+GaD.mp33";
 
-            
+
             var audioDificil1 = "https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+8+minGaD.mp3";
      
 
@@ -195,7 +195,9 @@
             let nivel = await API.findnivel(name);
             speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos.`;
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                speakOutput += ` Vas muy bien, sigue así.`;
+                var frases = ["Vas muy bien, sigue así", "Buen trabajo", "Que bien vas"];
+                var rand = Math.floor(Math.random() * 3);
+                speakOutput += frases[rand];
             }
             else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
                 speakOutput += ` Vas muy bien, sigue así.`;
