@@ -193,6 +193,7 @@
             let diasAcum = await API.findDiasAcum(name);
             let tiemAcum = await API.findTiempoAcum(name);
             let nivel = await API.findnivel(name);
+            
             speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos.`;
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
                 var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
@@ -200,10 +201,12 @@
                 speakOutput += frases[rand];
             }
             else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
-                speakOutput += ` Vas muy bien, sigue así.`;
+                var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
+                var rand = Math.floor(Math.random() * 3);
+                speakOutput += frases[rand];
             }
 
-            speakOutput += ' Puedes decir salir para acabar, o puedes empezar a entrenar.'
+            speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
 
 
             return handlerInput.responseBuilder
