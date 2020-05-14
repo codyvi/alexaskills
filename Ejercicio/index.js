@@ -201,9 +201,9 @@
                 speakOutput += frases[rand];
             }
             else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
-                var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
-                var rand = Math.floor(Math.random() * 3);
-                speakOutput += frases[rand];
+                var frases2 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
+                var rand2 = Math.floor(Math.random() * 3);
+                speakOutput += frases2[rand2];
             }
 
             speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
