@@ -195,7 +195,7 @@
             let nivel = await API.findnivel(name);
             speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos.`;
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                var frases = ["Vas muy bien, sigue así", "Buen trabajo", "Que bien vas"];
+                var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
                 var rand = Math.floor(Math.random() * 3);
                 speakOutput += frases[rand];
             }
