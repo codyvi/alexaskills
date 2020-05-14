@@ -76,8 +76,8 @@
 
             var audioMedio1 = "https://audios-de-alexa.s3.amazonaws.com/VT+medio+GaD.mp33";
 
-            //Audio puede ser incorrecto, checar con Rosa
-            var audioDificil1 = "https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+GaD+1.mp3";
+            
+            var audioDificil1 = "https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+8+minGaD.mp3";
      
 
 
