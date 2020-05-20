@@ -250,7 +250,7 @@
                 API.UpdateNivel(name,3)
             }
 
-            var speakOutput = `Perfecto ${name}, Tu nivel ha sido determinado,  ${decidirNivel}, para que se guarde di salir y vuelve a inicar la skill para conocerlo.`;
+            var speakOutput = `Perfecto ${name}, Tu nivel ha sido determinado,  ${decidirNivel}, para que se guarde di salir.`;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
