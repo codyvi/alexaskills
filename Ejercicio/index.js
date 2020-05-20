@@ -237,16 +237,17 @@
         async handle(handlerInput) {
             const decidirNivel = (handlerInput.requestEnvelope.request.intent.slots.Respuestas.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            const slotval2 = (handlerInput.requestEnvelope.request.intent.slots.Pureba.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             let name = prevSession.Nombre;
-            if(decidirNivel === 0){
+            if(decidirNivel === 1 || slotval2 === 1){
                 API.UpdateNivel(name, 1);
             }
 
-            else if(decidirNivel > 0 && decidirNivel < 3){
+            else if(decidirNivel > 2 || slotval2 === 2){
                 API.UpdateNivel(name, 2)
             }
 
-            else if(decidirNivel > 3){
+            else if(decidirNivel === 3 || slotval2 === 3){
                 API.UpdateNivel(name,3)
             }
 
