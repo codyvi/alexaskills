@@ -243,7 +243,7 @@
                 API.UpdateNivel(name, 1);
             }
 
-            else if(decidirNivel > 2 || slotval2 === 2){
+            else if(decidirNivel === 2 || slotval2 === 2){
                 API.UpdateNivel(name, 2)
             }
 
