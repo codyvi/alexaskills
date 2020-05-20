@@ -74,7 +74,7 @@
             var audioFile =  "https://audios-de-alexa.s3.amazonaws.com/Basico+VT+GaD.mp3";
 
 
-            var audioMedio1 = "https://audios-de-alexa.s3.amazonaws.com/VT+medio+GaD.mp33";
+            var audioMedio1 = "https://audios-de-alexa.s3.amazonaws.com/VT+medio+GD+V4.mp3";
 
 
             var audioDificil1 = "https://audios-de-alexa.s3.amazonaws.com/VT+Avanzado+8+minGaD.mp3";
@@ -173,7 +173,7 @@
         async handle(handlerInput) {
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            var speakOutput = `Claro ${name}, ¿Cuántas veces a la semana haras actividad física?`;
+            var speakOutput = `Claro ${name}, ¿Cuántos días de la semana vas a entrenar?`;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
