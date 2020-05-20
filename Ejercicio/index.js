@@ -10,7 +10,7 @@
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
         },
         handle(handlerInput) {
-            const speakOutput = 'Hola, bienvenido, empieza diciendome tu nombre '; 
+            const speakOutput = 'Hola, bienvenido a Futures Lab, empieza diciendome tu nombre '; 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .reprompt(speakOutput)
@@ -194,16 +194,30 @@
             let tiemAcum = await API.findTiempoAcum(name);
             let nivel = await API.findnivel(name);
             
-            speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos.`;
+            speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos. `;
+
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
                 var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
                 var rand = Math.floor(Math.random() * 3);
                 speakOutput += frases[rand];
+                speakOutput += " Te sugiero probar nivel intermedio ";
             }
-            else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
+            else{
+                var frasesmalas = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
+                var rand3 = Math.floor(Math.random() * 3);
+                speakOutput += frasesmalas[rand3];
+            }
+
+            if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
                 var frases2 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
+            }
+
+            else{
+                var frasesmalas2 = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
+                var rand32 = Math.floor(Math.random() * 3);
+                speakOutput += frasesmalas2[rand32];
             }
 
             speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
