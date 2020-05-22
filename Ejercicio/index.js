@@ -90,7 +90,7 @@
                 .getResponse();
         }
     };
-    const 
+
     const IniciarEntrenaminetoHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -222,37 +222,37 @@
             let tiemAcum = await API.findTiempoAcum(name);
             let nivel = await API.findnivel(name);
             
-            speakOutput = `Esta semana llevas ${diasAcum} dias y de tiempo ${tiemAcum} minutos. `;
+            speakOutput = `Esta semana llevas ${diasAcum} días y de tiempo ${tiemAcum} minutos. `;
 
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                var frases = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
+                var frases = [" Vas muy bien, sigue así ", " Buen trabaj o", " Que bien vas "];
                 var rand = Math.floor(Math.random() * 3);
                 speakOutput += frases[rand];
-                speakOutput += " Te sugiero probar nivel intermedio ";
+                speakOutput += " ,Te sugiero probar el nivel intermedio ";
             }
             else if(nivel === 1 && diasAcum < 5 && tiemAcum < 50){
-                var frasesmalas = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
+                var frasesmalas = [" Prueba a tratar de entrenar más ", " Echale ganas ", " Prueba "];
                 var rand3 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas[rand3];
             }
 
             else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
-                var frases2 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
+                var frases2 = [" Vas muy bien, sigue así ", " Buen trabajo ", " Que bien vas "];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
-                speakOutput += " Te sugiero probar nivel intermedio ";
+                speakOutput += " ,Te sugiero probar el nivel dificl ";
             }
 
             else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
-                var frasesmalas2 = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
+                var frasesmalas2 = [" Prueba a tratar de entrenar más ", " Echale ganas ", " Prueba "];
                 var rand32 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas2[rand32];
             }
 
             else if(nivel === 3){
-                var frases3 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
-                var rand32 = Math.floor(Math.random() * 3);
-                speakOutput += frases3[rand3];
+                var frases3 = [" Vas muy bien, sigue así ", " Buen trabajo ", " Que bien vas "];
+                var rand33 = Math.floor(Math.random() * 3);
+                speakOutput += frases3[rand33];
             }
 
             speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
