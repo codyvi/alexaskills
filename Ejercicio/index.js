@@ -63,6 +63,34 @@
                 .getResponse();
         }
     };
+    const SubirIntentHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'SubirNivel';
+        },
+        async handle(handlerInput) {
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            let Nivel = await API.findnivel(name);
+            if(Nivel === 1){
+                API.UpdateNivel(name, 2)
+            }
+
+            else if(Nivel === 2){
+                API.UpdateNivel(name, 3)
+            }
+
+
+            var speakOutput = `Claro ${name}, el nuevo nivel ha sido asignado, di salir y vuelve a entrar para entrenar con tu nuevo nivel.`
+           
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('Di salir para ver el nuevo nivel')
+                .getResponse();
+        }
+    };
+    const 
     const IniciarEntrenaminetoHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -208,17 +236,23 @@
                 speakOutput += frasesmalas[rand3];
             }
 
-            if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
+            else if(nivel === 2 && diasAcum >= 7 && tiemAcum >= 90){
                 var frases2 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
                 speakOutput += " Te sugiero probar nivel intermedio ";
             }
 
-            else  if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
+            else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
                 var frasesmalas2 = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
                 var rand32 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas2[rand32];
+            }
+
+            else if(nivel === 3){
+                var frases3 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
+                var rand32 = Math.floor(Math.random() * 3);
+                speakOutput += frases3[rand3];
             }
 
             speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
@@ -346,6 +380,7 @@
             InfoIntentHandler,
             IniciarEntrenaminetoHandler,
             DatosHandler,
+            SubirIntentHandler,
             IniciarTestHandler, 
             NivelIntentHandler,
             HelpIntentHandler,
