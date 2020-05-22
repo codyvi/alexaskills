@@ -202,7 +202,7 @@
                 speakOutput += frases[rand];
                 speakOutput += " Te sugiero probar nivel intermedio ";
             }
-            else{
+            else if(nivel === 1 && diasAcum < 5 && tiemAcum < 50){
                 var frasesmalas = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
                 var rand3 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas[rand3];
@@ -212,9 +212,10 @@
                 var frases2 = [" Vas muy bien, sigue así", " Buen trabajo", " Que bien vas"];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
+                speakOutput += " Te sugiero probar nivel intermedio ";
             }
 
-            else{
+            else  if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
                 var frasesmalas2 = ["Prueba a tratar de entrenar más", "Echale ganas", "Prueba"];
                 var rand32 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas2[rand32];
