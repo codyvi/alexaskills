@@ -209,6 +209,28 @@
                 .getResponse();
         }
     };
+
+    const ExpTestHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Experiencia';
+        },
+        async handle(handlerInput) {
+            const slotResp = (handlerInput.requestEnvelope.request.intent.slots.Exp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+
+            API.UpdateExp(name, slotResp)
+            var speakOutput = ` Gracias por tu respuesta, nos vemos ${name}`;
+            //speakOutput += slotResp;
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+    
     const DatosHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -255,7 +277,16 @@
                 speakOutput += frases3[rand33];
             }
 
-            speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.'
+            speakOutput += ' ,Puedes decir salir para acabar, o puedes empezar a entrenar.';
+
+            var randExp = Math.floor(Math.random()*5);
+
+            randExp = 3;
+
+            if(randExp === 3){
+                speakOutput += ' Nos gustaría conocer tu experiencia, puedes decir dar experiencia para darla.';
+            }
+            
 
 
             return handlerInput.responseBuilder
@@ -384,6 +415,7 @@
             IniciarTestHandler, 
             NivelIntentHandler,
             HelpIntentHandler,
+            ExpTestHandler,
             CancelAndStopIntentHandler,
             SessionEndedRequestHandler,
             IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers

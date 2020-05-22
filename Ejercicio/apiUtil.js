@@ -218,7 +218,7 @@ module.exports.UpdateExp = async function UpdateExp(slotUsuario, experi){
 		var id  = slotUsuario
 		var dExp = experi
 
-		let url2 = '/api/EjercicioAn6'
+		let url2 = 'https://ejercicio-api.herokuapp.com/api/EjercicioAn6'
 		let settings2 = {
 			method: 'POST',
 			body: JSON.stringify({
