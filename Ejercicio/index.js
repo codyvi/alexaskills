@@ -281,8 +281,6 @@
 
             var randExp = Math.floor(Math.random()*5);
 
-            randExp = 3;
-
             if(randExp === 3){
                 speakOutput += ' Nos gustaría conocer tu experiencia, puedes decir dar experiencia para darla.';
             }
