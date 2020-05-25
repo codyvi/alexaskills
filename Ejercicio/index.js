@@ -262,7 +262,7 @@
                 var frases2 = [" Vas muy bien, sigue así ", " Buen trabajo ", " Que bien vas "];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
-                speakOutput += " ,Te sugiero probar el nivel dificl, Si quiero subir de nivel ";
+                speakOutput += " ,Te sugiero probar el nivel dificil, para esto Si quiero subir de nivel ";
             }
 
             else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
