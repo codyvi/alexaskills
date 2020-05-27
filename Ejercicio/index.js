@@ -272,7 +272,7 @@
                 var frases2 = [" Vas muy bien, sigue así ", " Buen trabajo ", " Que bien vas "];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
-                speakOutput += " ,Te sugiero probar el nivel avanzado, para esto Si quiero subir de nivel ";
+                speakOutput += " ,Te sugiero probar el nivel avanzado, para esto di Si quiero subir de nivel ";
             }
 
             else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
@@ -292,7 +292,7 @@
             var randExp = Math.floor(Math.random()*5);
 
             if(randExp === 3){
-                speakOutput += 'os gustaria conocer que te parecio la experiencia, puedes decir mala, buena o excelente.';
+                speakOutput += ' Nos gustaria conocer que te parecio la experiencia, puedes decir mala, buena o excelente.';
             }
             
 
@@ -323,8 +323,19 @@
             else if(decidirNivel === '3'){
                 API.UpdateNivel(name,3)
             }
+            
+            var NivelStr = '';
+            if(decidirNivel === '1' ){
+                NivelStr = 'Básico';
+            }
+            else if(decidirNivel === '2'){
+                NivelStr = 'Intermedio';
+            }
+            else if(decidirNivel === '3'){
+                NivelStr = 'Avanzado';
+            }
 
-            var speakOutput = `Perfecto ${name}, Tu nivel ha sido determinado,  ${decidirNivel}, para que se guarde di salir.`;
+            var speakOutput = `Perfecto ${name}, Tu nivel ha sido determinado,  ${NivelStr}, para que se guarde di salir.`;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
