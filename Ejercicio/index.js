@@ -26,6 +26,7 @@
             const nombreQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Nombre.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             var speakOutput = '';
             let Nivel = await API.findnivel(nombreQueRecibo);
+            var NivelStr = '';
     
 
             if(Nivel === 0)
@@ -34,7 +35,16 @@
             }
 
             else{
-                speakOutput =  `Hola ${nombreQueRecibo}, tu nivel es ${Nivel}, quieres iniciar tu rutina diaria, o te gustaría saber como te fue en la semana`;
+                if(Nivel === 1 ){
+                    NivelStr = 'Básico';
+                }
+                else if(Nivel === 2){
+                    NivelStr = 'Intermedio';
+                }
+                else if(nivel === 3){
+                    NivelStr = 'Avanzado';
+                }
+                speakOutput =  `Hola ${nombreQueRecibo}, tu nivel es ${NivelStr}, quieres iniciar tu rutina diaria, o te gustaría saber como te fue en la semana`;
             }
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             prevSession["Nombre"] = nombreQueRecibo;
@@ -262,7 +272,7 @@
                 var frases2 = [" Vas muy bien, sigue así ", " Buen trabajo ", " Que bien vas "];
                 var rand2 = Math.floor(Math.random() * 3);
                 speakOutput += frases2[rand2];
-                speakOutput += " ,Te sugiero probar el nivel dificil, para esto Si quiero subir de nivel ";
+                speakOutput += " ,Te sugiero probar el nivel avanzado, para esto Si quiero subir de nivel ";
             }
 
             else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
