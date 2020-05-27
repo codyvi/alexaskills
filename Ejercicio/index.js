@@ -41,7 +41,7 @@
                 else if(Nivel === 2){
                     NivelStr = 'Intermedio';
                 }
-                else if(nivel === 3){
+                else if(Nivel === 3){
                     NivelStr = 'Avanzado';
                 }
                 speakOutput =  `Hola ${nombreQueRecibo}, tu nivel es ${NivelStr}, quieres iniciar tu rutina diaria, o te gustaría saber como te fue en la semana`;
@@ -292,7 +292,7 @@
             var randExp = Math.floor(Math.random()*5);
 
             if(randExp === 3){
-                speakOutput += ' Nos gustaría conocer tu experiencia, puedes decir dar experiencia para darla.';
+                speakOutput += 'os gustaria conocer que te parecio la experiencia, puedes decir mala, buena o excelente.';
             }
             
 
@@ -355,7 +355,7 @@
                     || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
         },
         handle(handlerInput) {
-            const speakOutput = 'Nos vemos!';
+            const speakOutput = 'Nos vemos! Gracias por usar Voice Training';
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .getResponse();
