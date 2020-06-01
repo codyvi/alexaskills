@@ -263,8 +263,8 @@
                 speakOutput += " ,Te sugiero probar el nivel intermedio, para esto di Si quiero subir de nivel";
             }
             else if(nivel === 1 && diasAcum < 5 && tiemAcum < 50){
-                var frasesmalas = [" Prueba a tratar de entrenar más ", " Echale ganas ", " Prueba "];
-                var rand3 = Math.floor(Math.random() * 3);
+                var frasesmalas = [" Prueba a tratar de entrenar más ", " Echale ganas "];
+                var rand3 = Math.floor(Math.random() * 2);
                 speakOutput += frasesmalas[rand3];
             }
 
