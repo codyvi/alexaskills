@@ -257,7 +257,7 @@
             speakOutput = `Esta semana llevas ${diasAcum} días y de tiempo ${tiemAcum} minutos. `;
 
             if(nivel === 1 && diasAcum >= 5 && tiemAcum >= 50){
-                var frases = [" Vas muy bien, sigue así ", " Buen trabaj o", " Que bien vas "];
+                var frases = [" Vas muy bien, sigue así ", " Buen trabajo", " Que bien vas "];
                 var rand = Math.floor(Math.random() * 3);
                 speakOutput += frases[rand];
                 speakOutput += " ,Te sugiero probar el nivel intermedio, para esto di Si quiero subir de nivel";
@@ -276,7 +276,7 @@
             }
 
             else if(nivel === 2 && diasAcum < 7 && tiemAcum < 90){
-                var frasesmalas2 = [" Prueba a tratar de entrenar más ", " Echale ganas ", " Prueba "];
+                var frasesmalas2 = [" Prueba a tratar de entrenar más ", " Echale ganas "];
                 var rand32 = Math.floor(Math.random() * 3);
                 speakOutput += frasesmalas2[rand32];
             }
