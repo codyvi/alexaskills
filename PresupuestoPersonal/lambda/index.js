@@ -1,13 +1,13 @@
  // This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
     // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
     // session persistence, api calls, and more.
-    const Alexa = require('ask-sdk-core');
-    const fetch = require('node-fetch');
-    const API = require('./apiUtil.js');
+const Alexa = require('ask-sdk-core');
+const fetch = require('node-fetch');
+const API = require('./apiUtil.js');
     
-    var nombreQueRecibo =""
+var nombreQueRecibo =""
 
-    const LaunchRequestHandler = {
+const LaunchRequestHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
         },
@@ -21,7 +21,7 @@
         }
     };
 
-    const NombreHandler = {
+const NombreHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
@@ -63,7 +63,7 @@
     };
 
 
-    const FollowUpUnoHandler = {
+const FollowUpUnoHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FollowUpUno';
@@ -325,7 +325,7 @@
         }
     };
 
-    const HelpIntentHandler = {
+const HelpIntentHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
@@ -340,7 +340,7 @@
         }
     };
 
-    const CancelAndStopIntentHandler = {
+const CancelAndStopIntentHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
@@ -354,7 +354,7 @@
         }
     };
 
-    const SessionEndedRequestHandler = {
+const SessionEndedRequestHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
         },
@@ -368,7 +368,7 @@
     // It will simply repeat the intent the user said. You can create custom handlers
     // for your intents by defining them above, then also adding them to the request
     // handler chain below.
-    const IntentReflectorHandler = {
+const IntentReflectorHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
         },
@@ -386,7 +386,7 @@
     // Generic error handling to capture any syntax or routing errors. If you receive an error
     // stating the request handler chain is not found, you have not implemented a handler for
     // the intent being invoked or included it in the skill builder below.
-    const ErrorHandler = {
+const ErrorHandler = {
         canHandle() {
             return true;
         },
