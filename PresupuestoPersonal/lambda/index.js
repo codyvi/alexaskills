@@ -13,7 +13,7 @@
         },
         handle(handlerInput) {
             //const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para ver tu información sobre el presupuesto.';
-            const speakOutput = 'Bienvenido a tus gastos de viaje. Di tu nombre para conocer tu información sobre el presupuesto.';
+            const speakOutput = `Bienvenido a Future's Lab. Di tu nombre para conocer tu información sobre el presupuesto.`;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .reprompt(speakOutput)
@@ -32,7 +32,7 @@
             let elproyecto;
             //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-            elproyecto = `Hola ${nombreQueRecibo}, Bienvenido a Future's Lab. ¿Quieres conocer tus gastos de operación o tus gastos de proyecto?`
+            elproyecto = `Hola ${nombreQueRecibo}, ¿Quieres conocer tus gastos de operación o tus gastos de proyecto?`
     
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             prevSession["Nombre"] = nombreQueRecibo;
@@ -58,11 +58,22 @@
            // DatosIntent.save_dynamo(handlerInput,nombreQueRecibo,preguntaQueRecibo);
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-            let elproyecto;
+            let elproyecto = '';
             if(name){
                 if(preguntaQueRecibo === 'Comparame con el año anterior'){
+
+     
+
+                    var GastadoAnt = await API.findGastadoAnterior(name);
+                    var totOpex = await API.findTotalOpex(name);
                     
-                    elproyecto += `Con respecto al año anterior, para el periodo Junio septiembre, este año has gastado un  menos`
+      
+                    var divGOpex = (totOpex*100)/GastadoAnt
+
+                    var porc = Math.ceil(100 - divGOpex);
+                    
+                    elproyecto += `Con respecto al año anterior, para el periodo Junio septiembre, este año has gastado un  ${porc} % menos. ` 
+                    elproyecto += saberAlgoMas;
                     
                 }
             }

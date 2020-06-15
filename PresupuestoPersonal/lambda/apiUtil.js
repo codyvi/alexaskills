@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-module.exports.findgastosjd19 = async function findServiciosPresupuesto(slotUsuario) {
+module.exports.findServiciosPresupuesto = async function findServiciosPresupuesto(slotUsuario) {
     let data = await getVP();
     let gastos = '';
         for ( let i = 0; i < data.length; i ++ ){
@@ -11,6 +11,32 @@ module.exports.findgastosjd19 = async function findServiciosPresupuesto(slotUsua
   console.log(gastos);
   return gastos;
 }
+
+module.exports.findGastadoAnterior = async function findGastadoAnterior(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].GastadoAñoAnterior;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+}
+
+
+module.exports.findTotalOpex = async function findTotalOpex(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].TotalGastadoOpex;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+}
+
 
 
 
