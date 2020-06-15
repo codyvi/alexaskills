@@ -22,7 +22,7 @@
         "GastosOperativosPresupuesto": 2500000.00,
         "GastosOperativosGastado": 1000000.00, 
         "GastosOperativosPlanificado": 1250000.00, 
-        "SueldosYSalarios Presupuesto": 3000000.00, 
+        "SueldosYSalariosPresupuesto": 3000000.00, 
         "SueldosYSalariosGastado": 1700000.00, 
         "SueldosYSalariosPlanificado": 1500000.00, 
         "TotalPresupuestoOpex": 13590000.00, 
@@ -43,6 +43,5 @@
         "TotalPresupuestoProyecto":	8000000.00, 
         "TotalGastadoProyecto": 5100000.00, 
         "TotalPlanificadoProyecto": 4000000.00
-
     }
 ]
