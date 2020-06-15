@@ -1,13 +1,13 @@
  // This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
     // Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
     // session persistence, api calls, and more.
-const Alexa = require('ask-sdk-core');
-const fetch = require('node-fetch');
-const API = require('./apiUtil.js');
+    const Alexa = require('ask-sdk-core');
+    const fetch = require('node-fetch');
+    const API = require('./apiUtil.js');
     
-var nombreQueRecibo =""
+    var nombreQueRecibo =""
 
-const LaunchRequestHandler = {
+    const LaunchRequestHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
         },
@@ -21,7 +21,7 @@ const LaunchRequestHandler = {
         }
     };
 
-const NombreHandler = {
+    const NombreHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Saludo';
@@ -32,24 +32,8 @@ const NombreHandler = {
             let elproyecto;
             //elproyecto = `Hola ${nombreQueRecibo}, tu pregunta es ${preguntaQueRecibo}.`;
 
-            if(nombreQueRecibo === 'David' || nombreQueRecibo === 'Salvador')
-            {
-                elproyecto = `Hola ${nombreQueRecibo}, tus gastos en `
-                let vicepresidencia = await API.findvpName(nombreQueRecibo);
-                elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
-                let gastos = await API.findgastosjd19(nombreQueRecibo);
-                elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
-            }
-
-            else
-            {
-                elproyecto = `Hola ${nombreQueRecibo}, tus gastos en la vicepresidencia `;
-                let vicepresidencia = await API.findvpName(nombreQueRecibo);
-                elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-                let gastos = await API.findgastosjd19(nombreQueRecibo);
-                elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
-            }
-
+            elproyecto = `Hola ${nombreQueRecibo}, Bienvenido a Future's Lab. ¿Quieres conocer tus gastos de operación o tus gastos de proyecto?`
+    
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             prevSession["Nombre"] = nombreQueRecibo;
             handlerInput.attributesManager.setSessionAttributes(prevSession);
@@ -63,260 +47,28 @@ const NombreHandler = {
     };
 
 
-const FollowUpUnoHandler = {
+    //Gastos de operación
+    const FollowUpUnoHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FollowUpUno';
         },
         async handle(handlerInput) {
-            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.Pregunta.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.PreguntasOp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
            // DatosIntent.save_dynamo(handlerInput,nombreQueRecibo,preguntaQueRecibo);
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
             let elproyecto;
-            if (name)
-            {
-                
-                if (preguntaQueRecibo === '¿Cuanto llevo gastado en viajes en la vicepresidencia?' || preguntaQueRecibo === '¿Cuanto llevo gastado en gastos de viaje?')
-                {
-                    if(name === 'David' || name === 'Salvador')
-                    {
-                        elproyecto = `Claro, tus gastos en `
-                        let vicepresidencia = await API.findvpName(name);
-                        elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
-                        let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
-                    }
-        
-                    else
-                    {
-                        elproyecto = `Claro, tus gastos en la vicepresidencia `;
-                        let vicepresidencia = await API.findvpName(name);
-                        elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-                        let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos. ' + saberAlgoMas;
-                    }
-                }
-
-                else if(preguntaQueRecibo === '¿Cómo voy con mi plan?' || preguntaQueRecibo === '¿Cómo voy respecto al plan?' || preguntaQueRecibo === '¿Cuánto me he excedido de mi plan?' || preguntaQueRecibo === '¿He gastado más de lo que debo?' || preguntaQueRecibo === '¿Cómo voy comparado con mi plan?')
-                {
-                    elproyecto = `Vas `;
-                    let exce = await API.findvarvsplan2019(name);
-                    if(exce > 0)
-                    {
-                        if(exce < 1)
-                        {
-                            exce = exce*1000000;
-                            elproyecto += exce + ' pesos excedidos. ' + saberAlgoMas;
-                        }
-                        else
-                        {
-                            elproyecto += exce + ' millones de pesos excedidos. ' + saberAlgoMas; 
-                        }
-                        
-                    }
-
-                    else
-                    {
-                        let newexce = Math.abs(exce);
-                        if(newexce < 1)
-                        {
-                            exce = Math.abs(exce*1000000);
-                            elproyecto += exce + '  pesos por debajo del plan. ' + saberAlgoMas;
-                        }
-                        else
-                        {
-                            exce = Math.abs(exce);
-                            elproyecto += exce + ' millones de pesos por debajo del plan. ' + saberAlgoMas;
-                        }
-                        
-                    }
+            if(name){
+                if(preguntaQueRecibo === 'Comparame con el año anterior'){
+                    
+                    elproyecto += `Con respecto al año anterior, para el periodo Junio septiembre, este año has gastado un  menos`
                     
                 }
-
-                else if(preguntaQueRecibo === 'Comparame con el año anterior' || preguntaQueRecibo === '¿Como voy contra el año anterior?' || preguntaQueRecibo === 'Como voy comparado con el año anterior')
-                {
-                    // elproyecto = `En comparación, en este periodo has gastado `;
-                    let exce = await API.findvarvsplan2018(name);
-                    if(exce > 0)
-                    {
-                        elproyecto = `En comparación, en este periodo has gastado `;
-                        if(exce < 1)
-                        {
-                            exce = exce*1000000;
-                            elproyecto += exce + ' pesos más que el año anterior. ' + saberAlgoMas;
-                        }
-                        else
-                        {
-                            elproyecto += exce + ' millones de pesos más que el año anterior. ' + saberAlgoMas; 
-                        }
-                    }
-
-                    else
-                    {
-                        elproyecto = `Tienes una eficiencia de `;
-                        let newexce = Math.abs(exce);
-                        if(newexce < 1)
-                        {
-                            exce = Math.abs(exce*1000000);
-                            elproyecto += exce + ' pesos. ' + saberAlgoMas;
-                        }
-
-                        else
-                        {
-                            exce = Math.abs(exce);
-                            elproyecto += exce + ' millones de pesos. ' + saberAlgoMas;
-                        }
-                    }
-                }
-
-                else if(preguntaQueRecibo === 'Dame toda la información' || preguntaQueRecibo === 'Dime toda la información que tengas de mi presupuesto')
-                {
-                    if(name === 'David' || name === 'Salvador')
-                    {
-                        elproyecto = `Claro, tus gastos en `
-                        let vicepresidencia = await API.findvpName(name);
-                        elproyecto += vicepresidencia +' en el periodo agosto-dicembre del 2019 son ';
-                        let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos.';
-                        elproyecto += ` Comparado con tu plan vas `;
-                        let exce = await API.findvarvsplan2019(name);
-                        if(exce > 0)
-                        {
-                            if(exce < 1)
-                            {
-                                exce = exce*1000000;
-                                elproyecto += exce + ' pesos excedidos.';
-                            }
-                            else
-                            {
-                                elproyecto += exce + ' millones de pesos excedidos.'; 
-                            }
-                            
-                        }
-    
-                        else
-                        {
-                            let newexce = Math.abs(exce);
-                            if(newexce < 1)
-                            {
-                                exce = exce*1000000;
-                                elproyecto += exce + ' miles por debajo de tu plan.';
-                            }
-    
-                            else
-                            {
-                                elproyecto += exce + ' millones excedidos.';
-                            }
-                        }
-
-                        elproyecto += ` Comparado con el año anterior vas `;
-                        let exce2 = await API.findvarvsplan2018(name);
-                        if(exce2 > 0)
-                        {
-                            if(exce2 < 1)
-                            {
-                                exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' pesos excedidos. ' + saberAlgoMas;
-                            }
-                            else
-                            {
-                                elproyecto += exce2 + ' millones de pesos excedidos. ' + saberAlgoMas; 
-                            }
-                            
-                        }
-    
-                        else
-                        {
-                            let newexce = Math.abs(exce2);
-                            if(newexce < 1)
-                            {
-                                exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' miles por debajo de tu plan. ' + saberAlgoMas;
-                            }
-    
-                            else
-                            {
-                                elproyecto += exce2 + ' millones excedidos. ' + saberAlgoMas;
-                            }
-                        }
-                   
-                    }
-        
-                    else
-                    {
-                        elproyecto = `Claro, tus gastos en la vicepresidencia `;
-                        let vicepresidencia = await API.findvpName(name);
-                        elproyecto += vicepresidencia + ' en el periodo agosto-diciembre del 2019 son ';
-                        let gastos = await API.findgastosjd19(name);
-                        elproyecto += gastos + ' millones de pesos.';
-                        elproyecto = ` Comparado con tu plan vas `;
-                        let exce = await API.findvarvsplan2019(name);
-                        if(exce > 0)
-                        {
-                            if(exce < 1)
-                            {
-                                exce = exce*1000000;
-                                elproyecto += exce + ' pesos excedidos.';
-                            }
-                            else
-                            {
-                                elproyecto += exce + ' millones de pesos excedidos.'; 
-                            }
-                            
-                        }
-    
-                        else
-                        {
-                            let newexce = Math.abs(exce);
-                            if(newexce < 1)
-                            {
-                                exce = exce*1000000;
-                                elproyecto += exce + ' miles por debajo de tu plan. ';
-                            }
-    
-                            else
-                            {
-                                elproyecto += exce + ' millones excedidos.';
-                            }
-                        }
-
-                        elproyecto += ` Comparado con el año anterior vas `;
-                        let exce2 = await API.findvarvsplan2018(name);
-                        if(exce2 > 0)
-                        {
-                            if(exce2 < 1)
-                            {
-                                exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' pesos excedidos. ' + saberAlgoMas;
-                            }
-                            else
-                            {
-                                elproyecto += exce2 + ' millones de pesos excedidos. ' + saberAlgoMas; 
-                            }
-                            
-                        }
-    
-                        else
-                        {
-                            let newexce = Math.abs(exce2);
-                            if(newexce < 1)
-                            {
-                                exce2 = exce2*1000000;
-                                elproyecto += exce2 + ' miles por debajo de tu plan. ' + saberAlgoMas;
-                            }
-    
-                            else
-                            {
-                                elproyecto += exce2 + ' millones excedidos. ' + saberAlgoMas;
-                            }
-                        }
-                        
-                    }
-                }
-                
             }
-
+ 
+                
+           
             const speakOutput = elproyecto;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
@@ -324,8 +76,34 @@ const FollowUpUnoHandler = {
                 .getResponse();
         }
     };
+    
+    //Gastos de proyecto
+    
+    
+    //Experiencia
+    const ExpTestHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'Experiencia';
+        },
+        async handle(handlerInput) {
+            const slotResp = (handlerInput.requestEnvelope.request.intent.slots.Exp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
 
-const HelpIntentHandler = {
+            
+            var speakOutput = ` Gracias por tu respuesta, nos vemos ${name}`;
+            //speakOutput += slotResp;
+
+            return handlerInput.responseBuilder
+                .speak(speakOutput)
+                .reprompt('add a reprompt if you want to keep the session open for the user to respond')
+                .getResponse();
+        }
+    };
+    
+
+    const HelpIntentHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
@@ -340,7 +118,7 @@ const HelpIntentHandler = {
         }
     };
 
-const CancelAndStopIntentHandler = {
+    const CancelAndStopIntentHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
                 && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
@@ -354,7 +132,7 @@ const CancelAndStopIntentHandler = {
         }
     };
 
-const SessionEndedRequestHandler = {
+    const SessionEndedRequestHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
         },
@@ -368,7 +146,7 @@ const SessionEndedRequestHandler = {
     // It will simply repeat the intent the user said. You can create custom handlers
     // for your intents by defining them above, then also adding them to the request
     // handler chain below.
-const IntentReflectorHandler = {
+    const IntentReflectorHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
         },
@@ -386,7 +164,7 @@ const IntentReflectorHandler = {
     // Generic error handling to capture any syntax or routing errors. If you receive an error
     // stating the request handler chain is not found, you have not implemented a handler for
     // the intent being invoked or included it in the skill builder below.
-const ErrorHandler = {
+    const ErrorHandler = {
         canHandle() {
             return true;
         },
