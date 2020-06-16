@@ -37,6 +37,19 @@ module.exports.findTotalOpex = async function findTotalOpex(slotUsuario) {
   return gastos;
 }
 
+module.exports.findTotalPOpex = async function findTotalPOpex(slotUsuario) {
+  let data = await getVP();
+  let gastos = '';
+      for ( let i = 0; i < data.length; i ++ ){
+          if (data[i].name === slotUsuario) {
+              gastos = data[i].TotalPlanificadoOpex;
+          }
+      }
+console.log(gastos);
+return gastos;
+}
+
+
 
 
 

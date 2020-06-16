@@ -59,27 +59,29 @@
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
             let elproyecto = '';
-            if(name){
-                if(preguntaQueRecibo === 'Comparame con el año anterior'){
 
-     
-
+            switch (preguntaQueRecibo) {
+                case 'Comparame con el año anterior':
                     var GastadoAnt = await API.findGastadoAnterior(name);
                     var totOpex = await API.findTotalOpex(name);
-                    
-      
-                    var divGOpex = (totOpex*100)/GastadoAnt
-
+                    var divGOpex = (totOpex*100)/GastadoAnt;
                     var porc = Math.ceil(100 - divGOpex);
-                    
                     elproyecto += `Con respecto al año anterior, para el periodo Junio septiembre, este año has gastado un  ${porc} % menos. ` 
                     elproyecto += saberAlgoMas;
-                    
-                }
-            }
- 
-                
-           
+                    break;
+                case '¿He gastado más de lo que debo?':
+                    var totPopex = await API.findTotalPOpex(name);
+                    var totOpex1 = await API.findTotalOpex(name);
+                    var divGOpex1 = (totOpex1*100)/totPopex;
+                    var porc1 = Math.ceil(100 - divGOpex1);
+                    elproyecto += `Si, te has excedido un ${porc1} % con respecto al plan. `
+                    elproyecto += saberAlgoMas;
+                    break;
+                default:
+                  elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
+              }
+
+        
             const speakOutput = elproyecto;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
