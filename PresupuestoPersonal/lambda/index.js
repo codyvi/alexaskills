@@ -92,6 +92,11 @@
                     elproyecto += `A la fecha has gastado  ${totOpex3} de pesos, un ${porc3} % más con respecto al plan. `;
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto dinero he gastado?':
+                    var totOpex4= await API.findTotalOpex(name);
+                    elproyecto += `A la fecha has gastado ${totOpex4} de pesos. `;
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }
