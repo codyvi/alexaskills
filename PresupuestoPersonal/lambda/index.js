@@ -13,7 +13,7 @@
         },
         handle(handlerInput) {
             //const speakOutput = 'Hola, bienvenido a tu presupuesto de viajes! Di tu nombre para ver tu información sobre el presupuesto.';
-            const speakOutput = `Bienvenido a Future's Lab. Di tu nombre para conocer tu información sobre el presupuesto.`;
+            const speakOutput = `Bienvenido a Futures Lab. Di tu nombre para conocer tu información sobre el presupuesto.`;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .reprompt(speakOutput)
@@ -73,7 +73,7 @@
                     var totPopex = await API.findTotalPOpex(name);
                     var totOpex1 = await API.findTotalOpex(name);
                     var divGOpex1 = (totOpex1*100)/totPopex;
-                    var porc1 = Math.ceil(100 - divGOpex1);
+                    var porc1 = Math.abs(Math.ceil(100 - divGOpex1));
                     elproyecto += `Si, te has excedido un ${porc1} % con respecto al plan. `
                     elproyecto += saberAlgoMas;
                     break;
@@ -138,7 +138,7 @@
                     || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
         },
         handle(handlerInput) {
-            const speakOutput = 'Nos vemos! Aqui estare cuando quieras conocer más de tus gastos de viaje.';
+            const speakOutput = 'Nos vemos! Aqui estare cuando quieras conocer más de tus gastos.';
             return handlerInput.responseBuilder
                 .speak(speakOutput)
                 .getResponse();
