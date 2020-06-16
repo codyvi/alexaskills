@@ -84,6 +84,14 @@
                     elproyecto += ` Para la fecha te has excedido en ${excedidoPlan} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cómo voy con mi plan?':
+                    var totPopex3 = await API.findTotalPOpex(name);
+                    var totOpex3= await API.findTotalOpex(name);
+                    var divGOpex3 = (totOpex3*100)/totPopex3;
+                    var porc3 = Math.abs(Math.ceil(100 - divGOpex3));
+                    elproyecto += `A la fecha has gastado  ${totOpex3} de pesos, un ${porc3} % más con respecto al plan. `;
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }
