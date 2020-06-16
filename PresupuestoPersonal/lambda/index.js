@@ -103,14 +103,19 @@
                     elproyecto += saberAlgoMas;
                     break;
                 case '¿Cuanto llevo gastado en servicios?':
-                
-                    elproyecto += `En gastos de servicios llevas  ${} pesos `;
+                    var GastadoSer = await API.findGastadoServicios(name);
+                    elproyecto += `En gastos de servicios llevas  ${GastadoSer} pesos. `;
                     elproyecto+= saberAlgoMas;
                     break;
                 case '¿Cuanto llevo gastado consultoria?':
                     var gastadoCons = await API.findGastadoConsultoria(name);
                     elproyecto += `En gastos de consultoría llevas  ${gastadoCons} pesos. `;
                     elproyecto+= saberAlgoMas;
+                    break;
+                case '¿Cuanto llevo gastado en servicios externos?':
+                    var gastadoSEx = await API.findGastadoSExternos(name);
+                    elproyecto += `En gastos de servicios externos llevas  ${gastadoSEx} pesos. `;
+                    elproyecto += saberAlgoMas;
                     break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;

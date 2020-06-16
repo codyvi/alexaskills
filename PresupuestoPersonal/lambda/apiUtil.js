@@ -59,7 +59,20 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   console.log(gastos);
   return gastos;
   }
- 
+
+  module.exports.findGastadoServicios = async function findGastadoServicios(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].ServiciosGastado;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  }
+
+
   module.exports.findGastadoConsultoria = async function findGastadoConsultoria(slotUsuario) {
     let data = await getVP();
     let gastos = '';
@@ -72,9 +85,21 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   }
 
+  module.exports.findGastadoSExternos = async function findGastadoSExternos(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].ServiciosExternosGastado;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  }
+
+
 
   
-
 
 async function getVP() {
   let url =
