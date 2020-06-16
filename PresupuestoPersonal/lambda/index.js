@@ -74,7 +74,14 @@
                     var totOpex1 = await API.findTotalOpex(name);
                     var divGOpex1 = (totOpex1*100)/totPopex;
                     var porc1 = Math.abs(Math.ceil(100 - divGOpex1));
-                    elproyecto += `Si, te has excedido un ${porc1} % con respecto al plan. `
+                    elproyecto += `Si, te has excedido un ${porc1} % con respecto al plan. `;
+                    elproyecto += saberAlgoMas;
+                    break;
+                case '¿Cuánto me he excedido de mi plan?':
+                    var totPopex2 = await API.findTotalPOpex(name);
+                    var totOpex2 = await API.findTotalOpex(name);
+                    var excedidoPlan = totOpex2 - totPopex2;
+                    elproyecto += ` Para la fecha te has excedido en ${excedidoPlan} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 default:
