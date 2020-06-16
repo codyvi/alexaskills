@@ -24,7 +24,6 @@ module.exports.findGastadoAnterior = async function findGastadoAnterior(slotUsua
   return gastos;
 }
 
-
 module.exports.findTotalOpex = async function findTotalOpex(slotUsuario) {
     let data = await getVP();
     let gastos = '';
@@ -48,6 +47,18 @@ module.exports.findTotalPOpex = async function findTotalPOpex(slotUsuario) {
 console.log(gastos);
 return gastos;
 }
+
+module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].GastosDeViajesGastado;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  }
 
 
 

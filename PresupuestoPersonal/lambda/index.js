@@ -97,11 +97,15 @@
                     elproyecto += `A la fecha has gastado ${totOpex4} de pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuanto llevo gastado en viajes?':
+                    var GastadoViajes = await API.findGastadoViajes(name);
+                    elproyecto += `En gastos de viajes llevas ${GastadoViajes} pesos. `;
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }
 
-        
             const speakOutput = elproyecto;
             return handlerInput.responseBuilder
                 .speak(speakOutput)
