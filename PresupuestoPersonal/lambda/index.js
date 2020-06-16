@@ -102,6 +102,16 @@
                     elproyecto += `En gastos de viajes llevas ${GastadoViajes} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuanto llevo gastado en servicios?':
+                
+                    elproyecto += `En gastos de servicios llevas  ${} pesos `;
+                    elproyecto+= saberAlgoMas;
+                    break;
+                case '¿Cuanto llevo gastado consultoria?':
+                    var gastadoCons = await API.findGastadoConsultoria(name);
+                    elproyecto += `En gastos de consultoría llevas  ${gastadoCons} pesos. `;
+                    elproyecto+= saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }
