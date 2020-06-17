@@ -114,7 +114,12 @@
                     break;
                 case '¿Cuanto llevo gastado en servicios externos?':
                     var gastadoSEx = await API.findGastadoSExternos(name);
-                    elproyecto += `En gastos de servicios externos llevas  ${gastadoSEx} pesos. `;
+                    elproyecto += `En gastos de servicios externos llevas ${gastadoSEx} de pesos. `;
+                    elproyecto += saberAlgoMas;
+                    break;
+                case '¿Cuanto llevo en otros gastos de operación?':
+                    var gastosOp = await API.findGastadoOp(name);
+                    elproyecto += `En otros gastos operativos llevas ${gastosOp} pesos. `
                     elproyecto += saberAlgoMas;
                     break;
                 default:
