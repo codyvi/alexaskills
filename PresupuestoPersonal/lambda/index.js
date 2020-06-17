@@ -127,6 +127,11 @@
                     elproyecto += `En gastos de servicios publico llevas  ${gastosSerPu} pesos. `
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto llevo en gastos operativos?':
+                    var gastosSuelYSal = await API.findGastadoSuelySal(name);
+                    elproyecto += `En gastos de sueldos y salarios llevas  ${gastosSuelYSal} pesos. `
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }
