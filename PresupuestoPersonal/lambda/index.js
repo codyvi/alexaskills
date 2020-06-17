@@ -150,7 +150,6 @@
     };
     
     //Gastos de proyecto
-
     const FollowUpDosHandler = {
         canHandle(handlerInput) {
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -165,7 +164,7 @@
             switch (preguntaQueRecibo) {
                 case '¿Como voy con el proyecto Plataforma?':
                     var gastadoProyecto = await API.findGastadoProyecto(name);
-                    elproyecto += `De acuerdo a la fecha llevas gastado  ${gastadoProyecto}. ` 
+                    elproyecto += `De acuerdo a la fecha llevas gastado  ${gastadoProyecto} pesos. ` 
                     elproyecto += saberAlgoMas;
                     break;
                 default:
