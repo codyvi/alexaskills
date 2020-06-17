@@ -150,6 +150,36 @@
     };
     
     //Gastos de proyecto
+
+    const FollowUpDosHandler = {
+        canHandle(handlerInput) {
+            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+                && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FollowUpDos';
+        },
+        async handle(handlerInput) {
+            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.PreguntasOp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+           // DatosIntent.save_dynamo(handlerInput,nombreQueRecibo,preguntaQueRecibo);
+            const prevSession = handlerInput.attributesManager.getSessionAttributes();
+            let name = prevSession.Nombre;
+            let elproyecto = '';
+            switch (preguntaQueRecibo) {
+                case '¿Como voy con el proyecto Plataforma?':
+                    var gastadoProyecto = await API.findGastadoProyecto(name);
+                    elproyecto += `De acuerdo a la fecha llevas gastado  ${gastadoProyecto}. ` 
+                    elproyecto += saberAlgoMas;
+                    break;
+                default:
+                        elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
+                    }
+      
+                  const speakOutput = elproyecto;
+                  return handlerInput.responseBuilder
+                      .speak(speakOutput)
+                      .reprompt(speakOutput)
+                      .getResponse();
+              }
+          };
+
     
     
     //Experiencia
