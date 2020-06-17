@@ -107,14 +107,21 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
         }
   console.log(gastos);
   return gastos;
-  }
+  } 
 
-  
+  module.exports.findGastadoSerPu = async function findGastadoSerPu(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].ServiciosPúblicosGastado;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  } 
 
-
-
-  
-
+ 
 async function getVP() {
   let url =
     "https://finanzas-api-db.herokuapp.com/api/finanzas";
