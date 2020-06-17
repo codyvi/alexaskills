@@ -292,6 +292,7 @@
             LaunchRequestHandler,
             NombreHandler,
             FollowUpUnoHandler,
+            FollowUpDosHandler,
             HelpIntentHandler,
             CancelAndStopIntentHandler,
             SessionEndedRequestHandler,
