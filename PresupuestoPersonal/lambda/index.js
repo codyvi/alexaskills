@@ -157,7 +157,7 @@
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'FollowUpDos';
         },
         async handle(handlerInput) {
-            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.PreguntasOp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
+            const preguntaQueRecibo = (handlerInput.requestEnvelope.request.intent.slots.PreguntasProyecto.resolutions.resolutionsPerAuthority[0].values[0].value.name);
            // DatosIntent.save_dynamo(handlerInput,nombreQueRecibo,preguntaQueRecibo);
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
