@@ -132,6 +132,11 @@
                     elproyecto += `En gastos de sueldos y salarios llevas  ${gastosSuelYSal} pesos. `
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto es mi presupuesto de operacion?':
+                    var totPres = await API.findPresupuestoTotal(name);
+                    elproyecto += `Tu presupuesto anual es  ${totPres} pesos. `
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                   elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
               }

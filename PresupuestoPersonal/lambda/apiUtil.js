@@ -133,6 +133,20 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   } 
 
+  
+  module.exports.findPresupuestoTotal = async function findPresupuestoTotal(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].TotalPresupuestoOpex;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  } 
+
+
 async function getVP() {
   let url =
     "https://finanzas-api-db.herokuapp.com/api/finanzas";
