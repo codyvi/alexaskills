@@ -177,22 +177,22 @@
                     break;
                 case '¿Cuánto es mi presupuesto en el proyecto plataforma?':
                     var pres = await API.findPresupuestoProy(name);
-                    elproyecto += `Para el proyecto Plataforma el presupuesto es de  ${pres} pesos. `;
+                    elproyecto += `Para el proyecto Plataforma el presupuesto es de  ${pres} de pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 case '¿Cuánto tengo comprometido en el proyecto plataforma?':
                     var compro = await API.findCompAFech(name);
-                    elproyecto += `A la fecha en el proyecto Plataforma existe un monto comprometido de ${compro} pesos. `
+                    elproyecto += `A la fecha en el proyecto Plataforma existe un monto comprometido de ${compro} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 case '¿Cuanto llevo gastado en consultoria de proyecto?':
                     var consultoriaG = await API.findConsuProyecto(name);
-                    elproyecto += `A la fecha en consultoría se han gastado  ${consultoriaG} pesos. `
+                    elproyecto += `A la fecha en consultoría se han gastado  ${consultoriaG} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 case '¿Cuánto llevo gastado en sueldos y salarios de proyecto?':
                     var gasatadoSueldos =  await API.findSueldosYSalariosProyecto(name);
-                    elproyecto += `A la fecha en sueldos y salarios se han gastado  ${gasatadoSueldos} pesos. `;
+                    elproyecto += `A la fecha en sueldos y salarios se han gastado  ${gasatadoSueldos} de pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 default:
