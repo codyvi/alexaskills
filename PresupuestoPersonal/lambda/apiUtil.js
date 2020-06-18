@@ -170,8 +170,32 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   } 
 
-  
+  module.exports.findPresupuestoProy = async function findPresupuestoProy(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].TotalPresupuestoProyecto;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  } 
 
+  module.exports.findCompAFech= async function findCompAFech(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].ComprometidoALaFecha;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  } 
+
+
+  
 async function getVP() {
   let url =
     "https://finanzas-api-db.herokuapp.com/api/finanzas";

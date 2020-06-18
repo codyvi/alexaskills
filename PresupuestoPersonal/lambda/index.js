@@ -180,6 +180,11 @@
                     elproyecto += `Para el proyecto Plataforma el presupuesto es de  ${pres} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto tengo comprometido en el proyecto plataforma?':
+                    var compro = await API.findCompAFech(name);
+                    elproyecto += `A la fecha en el proyecto Plataforma existe un monto comprometido de ${compro} pesos. `
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                         elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
                     }
