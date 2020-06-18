@@ -172,7 +172,12 @@
                     var planProyecto2 = await API.findPlanProyecto(name);
                     var div2 = (gastadoProyecto2*100)/planProyecto2;
                     var porc = Math.abs(Math.ceil(100 - div2));
-                    elproyecto += `A la fecha te has excedido en un ${porc} % con respecto al presupuesto planificado. `
+                    elproyecto += `A la fecha te has excedido en un ${porc} % con respecto al presupuesto planificado. `;
+                    elproyecto += saberAlgoMas;
+                    break;
+                case '¿Cuánto es mi presupuesto en el proyecto plataforma?':
+                    var pres = await API.findPresupuestoProy(name);
+                    elproyecto += `Para el proyecto Plataforma el presupuesto es de  ${pres} pesos. `;
                     elproyecto += saberAlgoMas;
                     break;
                 default:
