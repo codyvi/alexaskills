@@ -167,6 +167,14 @@
                     elproyecto += `De acuerdo a la fecha llevas gastado  ${gastadoProyecto} pesos. ` 
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto me he excedido de mi plan en el proyecto Plataforma?':
+                    var gastadoProyecto2 = await API.findGastadoProyecto(name);
+                    var planProyecto2 = await API.findPlanProyecto(name);
+                    var div2 = (gastadoProyecto2*100)/planProyecto2;
+                    var porc = Math.abs(Math.ceil(100 - div2));
+                    elproyecto += `A la fecha te has excedido en un ${porc} % con respecto al presupuesto planificado. `
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                         elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
                     }
