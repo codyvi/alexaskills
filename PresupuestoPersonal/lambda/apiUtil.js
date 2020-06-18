@@ -182,7 +182,7 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   } 
 
-  module.exports.findCompAFech= async function findCompAFech(slotUsuario) {
+  module.exports.findCompAFech = async function findCompAFech(slotUsuario) {
     let data = await getVP();
     let gastos = '';
         for ( let i = 0; i < data.length; i ++ ){
@@ -194,6 +194,17 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   } 
 
+  module.exports.findConsuProyecto = async function findConsuProyecto(slotUsuario) {
+    let data = await getVP();
+    let gastos = '';
+        for ( let i = 0; i < data.length; i ++ ){
+            if (data[i].name === slotUsuario) {
+                gastos = data[i].ConsultoríaGastadoProyecto;
+            }
+        }
+  console.log(gastos);
+  return gastos;
+  } 
 
   
 async function getVP() {

@@ -185,6 +185,11 @@
                     elproyecto += `A la fecha en el proyecto Plataforma existe un monto comprometido de ${compro} pesos. `
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuanto llevo gastado en consultoria de proyecto?':
+                    var consultoriaG = await API.findConsuProyecto(name);
+                    elproyecto += `A la fecha en consultoría se han gastado  ${consultoriaG} pesos. `
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                         elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
                     }
