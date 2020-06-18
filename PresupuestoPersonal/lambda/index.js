@@ -190,6 +190,11 @@
                     elproyecto += `A la fecha en consultoría se han gastado  ${consultoriaG} pesos. `
                     elproyecto += saberAlgoMas;
                     break;
+                case '¿Cuánto llevo gastado en sueldos y salarios de proyecto?':
+                    var gasatadoSueldos =  await API.findSueldosYSalariosProyecto(name);
+                    elproyecto += `A la fecha en sueldos y salarios se han gastado  ${gasatadoSueldos} pesos. `;
+                    elproyecto += saberAlgoMas;
+                    break;
                 default:
                         elproyecto += 'Lo sentimos, esa pregunta no existe. ' + saberAlgoMas;
                     }
