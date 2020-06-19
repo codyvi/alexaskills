@@ -221,9 +221,10 @@
             const slotResp = (handlerInput.requestEnvelope.request.intent.slots.Exp.resolutions.resolutionsPerAuthority[0].values[0].value.name);
             const prevSession = handlerInput.attributesManager.getSessionAttributes();
             let name = prevSession.Nombre;
-
+            API.UpdateExp(name, slotResp)
             
-            var speakOutput = ` Gracias por tu respuesta, nos vemos ${name}`;
+            var speakOutput = ` Gracias por tu respuesta ${name}. `;
+            speakOutput += saberAlgoMas;
             //speakOutput += slotResp;
 
             return handlerInput.responseBuilder

@@ -218,6 +218,42 @@ module.exports.findGastadoViajes = async function findGastadoViajes(slotUsuario)
   return gastos;
   } 
 
+  module.exports.UpdateExp = async function UpdateExp(slotUsuario, experi){
+    var id  = slotUsuario
+    var dExp = experi
+
+    let url2 = 'https://finanzas-api-db.herokuapp.com//api/finanzasAn1'
+    let settings2 = {
+        method: 'POST',
+        body: JSON.stringify({
+            id: id,
+            exp: dExp
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }
+
+    fetch(url2, settings2)
+    .then( response => {
+        if ( response.ok ){
+            return response.json();
+        }
+
+        throw new Error ( response.statusText );
+    })
+    .then( responseJSON => {
+
+        console.log(responseJSON);
+    })
+    .catch( err => {
+        console.log( err );
+    })
+}
+
+
+  
+
 async function getVP() {
   let url =
     "https://finanzas-api-db.herokuapp.com/api/finanzas";
